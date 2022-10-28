@@ -1,0 +1,9 @@
+・strjoinを2回使うと先に使った方をfreeしないとleakすると考えられる。
+・bufの最後に改行がくるとsave[fd][0] == 0となりbreakしてしまう。
+	->rc == 0 || save[fd][0] != '\0' || buf[rc -1] == '\n'として解決
+・rc == 0でbreakするのはrc != 0でもループから抜け出すことがあり、（例えば、save[fd][0] != 0）
+その時にはsaveに保存すべき値があるから。
+//copy
+//trim line && if save[fd] include \n, set save[fd] and return line
+//check_save -> if save[fd] include \n, set save[fd] as "", else set as it is
+//if save[fd] != "", free(save[fd]) and return
