@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 23:19:10 by nutar             #+#    #+#             */
-/*   Updated: 2022/10/27 19:12:05 by nutar            ###   ########.fr       */
+/*   Updated: 2022/10/30 02:20:07 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # define BUFFER_SIZE 5
 
 char	*get_next_line(int fd);
-char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strjoin_edit(char *s1, char *s2);
 size_t	ft_strlen(const char *c);
 
 #endif

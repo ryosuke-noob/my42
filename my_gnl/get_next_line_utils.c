@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 23:18:42 by nutar             #+#    #+#             */
-/*   Updated: 2022/10/28 00:07:19 by nutar            ###   ########.fr       */
+/*   Updated: 2022/10/30 02:19:28 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,14 @@ static char	*set_return(char const *s1, char const *s2)
 	return (ret);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+static char	*free_func_edit(char *ret, char const *n2free)
+{
+	if (n2free != NULL)
+		free((void *)n2free);
+	return (ret);
+}//can we free char const??
+
+char	*ft_strjoin_edit(char *s1, char *s2)
 {
 	char	*ret;
 	size_t	i;
@@ -88,5 +95,5 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	while (++i < s1_len + s2_len)
 		ret[i] = s2[i - s1_len];
 	ret[i] = 0;
-	return (ret);
+	return (free_func_edit(ret, s1));
 }
