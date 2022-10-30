@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 22:07:31 by nutar             #+#    #+#             */
-/*   Updated: 2022/10/30 02:34:02 by nutar            ###   ########.fr       */
+/*   Updated: 2022/10/30 22:12:59 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,10 @@ int	main(void)
 		return (0);
 	}
 	i = -1;
-	while (++i < 2)
+	while (++i < 10)
 	{
 		l = get_next_line(fd);
-		if (l)
-			printf("%s", l);
+		printf("%s", l);
 	}
 	close(fd);
 

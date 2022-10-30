@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 23:18:42 by nutar             #+#    #+#             */
-/*   Updated: 2022/10/30 02:19:28 by nutar            ###   ########.fr       */
+/*   Updated: 2022/10/30 21:29:37 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,21 +43,21 @@ static char	*set_return(char const *s1, char const *s2)
 {
 	char	*ret;
 
-	if (!s1 && !s2)
+	if (s1 == NULL && s2 == NULL)
 	{
 		ret = (char *)malloc(sizeof(char));
-		ret[0] = 0;
-		if (!ret)
-			return (0);
+		ret[0] = '\0';
+		if (ret == NULL)
+			return (NULL);
 	}
 	else
 	{
-		if (!s1)
+		if (s1 == NULL)
 			ret = ft_strdup(s2);
 		else
 			ret = ft_strdup(s1);
-		if (!ret)
-			return (0);
+		if (ret == NULL)
+			return (NULL);
 	}
 	return (ret);
 }
@@ -76,7 +76,7 @@ char	*ft_strjoin_edit(char *s1, char *s2)
 	size_t	s1_len;
 	size_t	s2_len;
 
-	if (!s1 || !s2)
+	if (s1 == NULL || s2 == NULL)
 		return (set_return(s1, s2));
 	s1_len = ft_strlen(s1);
 	s2_len = ft_strlen(s2);
