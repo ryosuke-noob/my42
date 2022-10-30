@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 22:07:31 by nutar             #+#    #+#             */
-/*   Updated: 2022/10/30 22:12:59 by nutar            ###   ########.fr       */
+/*   Updated: 2022/10/30 23:01:47 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ int	main(void)
 
 	// mand
 	char	*l;
-	int	 fd = open("sample.txt", O_RDONLY);
+	// int	 fd = open("sample.txt", O_RDONLY);
+	int	 fd = open("42_with_nl", O_RDONLY);
 	// fd = 0;
 	if (fd == -1)
 	{
@@ -30,7 +31,7 @@ int	main(void)
 		return (0);
 	}
 	i = -1;
-	while (++i < 10)
+	while (++i < 2)
 	{
 		l = get_next_line(fd);
 		printf("%s", l);
@@ -60,5 +61,4 @@ int	main(void)
 	// close(fd_b1);
 	// close(fd_b2);
 	// close(fd_b3);
-	// printf("%ld\n",SSIZE_MAX);
 }
