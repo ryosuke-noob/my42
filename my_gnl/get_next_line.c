@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 23:18:48 by nutar             #+#    #+#             */
-/*   Updated: 2022/10/30 23:09:08 by nutar            ###   ########.fr       */
+/*   Updated: 2022/10/31 00:03:51 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static char	*check_save(char *save_fd, char **line)
 	size_t	i;
 
 	if (save_fd == NULL || save_fd[0] == '\0')
-		return (ft_strjoin_edit(NULL, NULL));
+		return (ft_strjoin_edit(save_fd, NULL));
 	i = 0;
 	while (save_fd[i] != '\0' && save_fd[i] != '\n')//max of i == SIZE_MAX - 1
 		i++;
@@ -92,7 +92,6 @@ char	*get_next_line(int fd)
 	while (rc == BUFFER_SIZE)
 	{
 		rc = read(fd, buf, BUFFER_SIZE);
-		printf("[%zu]",rc);
 		if (rc == -1)
 			return (free_func(buf, line, save[fd], -1));//free buf, and if either line or save[fd] is NULL, free it
 		if ((rc == 0 && save[fd] == NULL) || (rc == 0 && save[fd] != NULL && save[fd][0] == '\0'))

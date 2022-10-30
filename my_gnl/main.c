@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 22:07:31 by nutar             #+#    #+#             */
-/*   Updated: 2022/10/30 23:01:47 by nutar            ###   ########.fr       */
+/*   Updated: 2022/10/30 23:43:32 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	main(void)
 	// mand
 	char	*l;
 	// int	 fd = open("sample.txt", O_RDONLY);
-	int	 fd = open("42_with_nl", O_RDONLY);
+	int	 fd = open("41_no_nl", O_RDONLY);
 	// fd = 0;
 	if (fd == -1)
 	{

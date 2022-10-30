@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 23:18:42 by nutar             #+#    #+#             */
-/*   Updated: 2022/10/30 21:29:37 by nutar            ###   ########.fr       */
+/*   Updated: 2022/10/31 00:04:29 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static char	*ft_strdup(const char *src)
 	return (new);
 }
 
-static char	*set_return(char const *s1, char const *s2)
+static char	*set_return(char *s1, char *s2)
 {
 	char	*ret;
 
@@ -55,19 +55,22 @@ static char	*set_return(char const *s1, char const *s2)
 		if (s1 == NULL)
 			ret = ft_strdup(s2);
 		else
+		{
 			ret = ft_strdup(s1);
+			free(s1);
+		}
 		if (ret == NULL)
 			return (NULL);
 	}
 	return (ret);
 }
 
-static char	*free_func_edit(char *ret, char const *n2free)
+static char	*free_func_edit(char *ret, char *n2free)
 {
 	if (n2free != NULL)
-		free((void *)n2free);
+		free(n2free);
 	return (ret);
-}//can we free char const??
+}
 
 char	*ft_strjoin_edit(char *s1, char *s2)
 {
