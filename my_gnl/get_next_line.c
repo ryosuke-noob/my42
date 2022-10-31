@@ -6,11 +6,13 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 23:18:48 by nutar             #+#    #+#             */
-/*   Updated: 2022/10/31 00:03:51 by nutar            ###   ########.fr       */
+/*   Updated: 2022/10/31 14:27:55 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+# define BUFFER_SIZE 42
+
 
 static char	*check_buf(char *buf, int rc)
 {
@@ -44,6 +46,7 @@ static char	*check_save(char *save_fd, char **line)
 		i++;
 	if (i != ft_strlen(save_fd))// <-> if save_fd[i] != '\0'  //max of i == SIZE_MAX - 2
 	{
+		printf("[ret line]");
 		ret = ft_strjoin_edit(NULL, &save_fd[i + 1]);
 		if (ret == NULL)
 			return (NULL);
@@ -91,17 +94,18 @@ char	*get_next_line(int fd)
 		return (NULL);
 	while (rc == BUFFER_SIZE)
 	{
-		rc = read(fd, buf, BUFFER_SIZE);
-		if (rc == -1)
-			return (free_func(buf, line, save[fd], -1));//free buf, and if either line or save[fd] is NULL, free it
-		if ((rc == 0 && save[fd] == NULL) || (rc == 0 && save[fd] != NULL && save[fd][0] == '\0'))
-			break ;
 		save[fd] = check_save(save[fd], &line);//if save [fd] is NULL, free buf, and if line isn't NULL, free line
 		if (save[fd] == NULL)
 			return (free_func(buf, line, save[fd], -1));
 		if (save[fd][0] != '\0')
 			return (free_func(buf, line, save[fd], -5));//free buf. return line
 		free(save[fd]);
+		save[fd] = NULL;
+		rc = read(fd, buf, BUFFER_SIZE);
+		if (rc == -1)
+			return (free_func(buf, line, save[fd], -1));//free buf, and if neither line or save[fd] is NULL, free it
+		if ((rc == 0 && save[fd] == NULL) || (rc == 0 && save[fd] != NULL && save[fd][0] == '\0'))
+			break ;
 		save[fd] = check_buf(buf, rc);
 		line = ft_strjoin_edit(line, buf);//if line is is NULL, return NULL with freeing buf and save
 		if (line == NULL || save[fd] == NULL)
@@ -110,7 +114,7 @@ char	*get_next_line(int fd)
 			break ;
 	}
 	free(buf);
-	if (rc == 0)
+	if (rc == 0 && save[fd] != NULL && save[fd][0] == '\0')
 	{
 		if (save[fd] != NULL)
 		{
