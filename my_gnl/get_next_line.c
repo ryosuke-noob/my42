@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 23:18:48 by nutar             #+#    #+#             */
-/*   Updated: 2022/10/31 17:19:39 by nutar            ###   ########.fr       */
+/*   Updated: 2022/10/31 17:57:38 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,13 @@ static char	*check_save(char *save_fd, char **line)
 
 static char	*free_func(char *buf, char *line, char **save, long long int rc)//long long or not
 {
+	if (rc == -10)
+	{
+		if (*save == NULL)
+			rc = -1;
+		else if (*save[0] != '\0')
+			rc = -5;
+	}
 	if (rc != -10)
 		free(buf);
 	if (rc == -5)
@@ -86,21 +93,18 @@ char	*get_next_line(int fd)
 	char		*line;
 	static char	*save[1024];
 
-	if (BUFFER_SIZE >= SIZE_MAX || BUFFER_SIZE > 9223372036854775807 || fd < 0 || fd > 1023)//SSIZE_MAX == 9223372036854775807 in Limux
+	if (BUFFER_SIZE >= SIZE_MAX || BUFFER_SIZE > 9223372036854775807 || fd < 0 || fd > 1023)
 		return (NULL);
 	buf = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	rc = BUFFER_SIZE;
 	line = NULL;
-	if (buf == NULL)//FD_MAX == 65535
+	if (buf == NULL)
 		return (NULL);
 	while (rc == BUFFER_SIZE)
 	{
-		save[fd] = check_save(save[fd], &line);//if save [fd] is NULL, free buf, and if line isn't NULL, free line
-		if (save[fd] == NULL)
-			return (free_func(buf, line, &save[fd], -1));
-		if (save[fd][0] != '\0')
-			return (free_func(buf, line, &save[fd], -5));//free buf. return line
-		free_func(buf, line, &save[fd], -10);
+		save[fd] = check_save(save[fd], &line);
+		if (free_func(buf, line, &save[fd], -10))
+			return (line);
 		rc = read(fd, buf, BUFFER_SIZE);
 		if (rc == -1)
 			return (free_func(buf, line, &save[fd], -1));//free buf, and if either line or save[fd] is NULL, free it
