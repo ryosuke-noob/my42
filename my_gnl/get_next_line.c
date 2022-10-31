@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 23:18:48 by nutar             #+#    #+#             */
-/*   Updated: 2022/10/31 17:57:38 by nutar            ###   ########.fr       */
+/*   Updated: 2022/10/31 18:30:20 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,16 +40,16 @@ static char	*check_save(char *save_fd, char **line)
 	if (save_fd == NULL || save_fd[0] == '\0')
 		return (ft_strjoin_edit(save_fd, NULL));
 	i = 0;
-	while (save_fd[i] != '\0' && save_fd[i] != '\n')//max of i == SIZE_MAX - 1
+	while (save_fd[i] != '\0' && save_fd[i] != '\n')
 		i++;
-	if (i != ft_strlen(save_fd))// <-> if save_fd[i] != '\0'  //max of i == SIZE_MAX - 2
+	if (i != ft_strlen(save_fd))
 	{
 		ret = ft_strjoin_edit(NULL, &save_fd[i + 1]);
 		if (ret == NULL)
 			return (NULL);
 		save_fd[i + 1] = '\0';
 		*line = ft_strjoin_edit(save_fd, NULL);
-		if (*line == NULL)//free ret
+		if (*line == NULL)
 			return (NULL);
 		return (ret);
 	}
@@ -59,7 +59,7 @@ static char	*check_save(char *save_fd, char **line)
 	return (ft_strjoin_edit(NULL, NULL));
 }
 
-static char	*free_func(char *buf, char *line, char **save, long long int rc)//long long or not
+static char	*free_func(char *buf, char *line, char **save, long long int rc)
 {
 	if (rc == -10)
 	{
@@ -70,13 +70,10 @@ static char	*free_func(char *buf, char *line, char **save, long long int rc)//lo
 	}
 	if (rc != -10)
 		free(buf);
-	if (rc == -5)
+	if (rc == -5 || rc >= 0)
 		return (line);
-	if (rc == -1)
-	{
-		if (line != NULL)
-			free(line);
-	}
+	if (rc == -1 && line != NULL)
+		free(line);
 	if (rc == -1 || rc == -10 || rc == 0)
 	{
 		if (*save != NULL)
@@ -86,6 +83,19 @@ static char	*free_func(char *buf, char *line, char **save, long long int rc)//lo
 	return (NULL);
 }
 
+static char	*init(int fd, char **buf, char **line, ssize_t *rc)
+{
+	if (BUFFER_SIZE >= SIZE_MAX || BUFFER_SIZE > 9223372036854775807 \
+													|| fd < 0 || fd > 1023)
+		return (NULL);
+	*buf = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	*rc = BUFFER_SIZE;
+	*line = NULL;
+	if (*buf == NULL)
+		return (NULL);
+	return (*buf);
+}
+
 char	*get_next_line(int fd)
 {
 	ssize_t		rc;
@@ -93,12 +103,7 @@ char	*get_next_line(int fd)
 	char		*line;
 	static char	*save[1024];
 
-	if (BUFFER_SIZE >= SIZE_MAX || BUFFER_SIZE > 9223372036854775807 || fd < 0 || fd > 1023)
-		return (NULL);
-	buf = malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	rc = BUFFER_SIZE;
-	line = NULL;
-	if (buf == NULL)
+	if (init(fd, &buf, &line, &rc) == NULL)
 		return (NULL);
 	while (rc == BUFFER_SIZE)
 	{
@@ -107,16 +112,15 @@ char	*get_next_line(int fd)
 			return (line);
 		rc = read(fd, buf, BUFFER_SIZE);
 		if (rc == -1)
-			return (free_func(buf, line, &save[fd], -1));//free buf, and if either line or save[fd] is NULL, free it
-		if ((rc == 0 && save[fd] == NULL) || (rc == 0 && save[fd] != NULL && save[fd][0] == '\0'))
+			return (free_func(buf, line, &save[fd], -1));
+		if ((!rc && !save[fd]) || (!rc && save[fd] && save[fd][0] == '\0'))
 			break ;
 		save[fd] = check_buf(buf, rc);
-		line = ft_strjoin_edit(line, buf);//if line is is NULL, return NULL with freeing buf and save
+		line = ft_strjoin_edit(line, buf);
 		if (line == NULL || save[fd] == NULL)
-			return (free_func(buf, line, &save[fd], -1));//we need to free buf and line and save[fd]
+			return (free_func(buf, line, &save[fd], -1));
 		if (save[fd][0] != '\0' || buf[rc -1] == '\n')
 			break ;
 	}
-	free_func(buf, line, &save[fd], rc);
-	return (line);
+	return (free_func(buf, line, &save[fd], rc));
 }
