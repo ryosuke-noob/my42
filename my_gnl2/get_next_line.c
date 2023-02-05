@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 23:18:48 by nutar             #+#    #+#             */
-/*   Updated: 2023/01/27 01:21:09 by nutar            ###   ########.fr       */
+/*   Updated: 2023/02/05 21:07:37 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ static char	*free_func(char *buf, char *line, char **save, long long int rc)
 static char	*init(int fd, char **buf, char **line, ssize_t *rc)
 {
 	if (BUFFER_SIZE >= SIZE_MAX || BUFFER_SIZE > 9223372036854775807 \
-								BUFFER_SIZE < 0 || fd < 0 || fd > 1023)
+								|| BUFFER_SIZE < 0 || fd < 0 || fd > 1023)
 		return (NULL);
 	*buf = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	*rc = BUFFER_SIZE;
