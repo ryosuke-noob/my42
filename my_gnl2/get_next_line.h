@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 23:19:10 by nutar             #+#    #+#             */
-/*   Updated: 2023/02/05 21:10:59 by nutar            ###   ########.fr       */
+/*   Updated: 2023/02/07 05:30:57 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 10
+# endif
 
 char	*get_next_line(int fd);
 char	*ft_strjoin_edit(char *s1, char *s2);
