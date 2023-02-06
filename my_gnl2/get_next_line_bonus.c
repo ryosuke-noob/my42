@@ -6,11 +6,11 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 23:18:48 by nutar             #+#    #+#             */
-/*   Updated: 2023/02/07 05:35:46 by nutar            ###   ########.fr       */
+/*   Updated: 2023/02/07 05:39:00 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_lineL_bonus.h"
+#include "get_next_line_bonus.h"
 
 static char	*check_buf(char *buf, int rc)
 {
