@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 23:18:48 by nutar             #+#    #+#             */
-/*   Updated: 2023/02/05 21:07:37 by nutar            ###   ########.fr       */
+/*   Updated: 2023/02/06 23:10:53 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ static char	*free_func(char *buf, char *line, char **save, long long int rc)
 static char	*init(int fd, char **buf, char **line, ssize_t *rc)
 {
 	if (BUFFER_SIZE >= SIZE_MAX || BUFFER_SIZE > 9223372036854775807 \
-								|| BUFFER_SIZE < 0 || fd < 0 || fd > 1023)
+								|| BUFFER_SIZE <= 0 || fd < 0 || fd > 1023)
 		return (NULL);
 	*buf = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	*rc = BUFFER_SIZE;
@@ -124,3 +124,29 @@ char	*get_next_line(int fd)
 	}
 	return (free_func(buf, line, &save[fd], rc));
 }
+
+// #include <fcntl.h>
+// #include <time.h>
+// int	main(int argc, char **argv)
+// {
+// 	int		fd;
+// 	char	*tmp;
+
+// 	//single
+// 	if (argc == 1)
+// 		fd = 0;
+// 	else
+// 		fd = open(argv[1], O_RDONLY);
+// 	while (1)
+// 	{
+// 		tmp = get_next_line(fd);
+// 		if (tmp == NULL)
+// 			break ;
+// 		printf("%s",tmp);
+// 		free(tmp);
+// 	}
+// 	close(fd);
+// 	printf("\n-------------------------\n\n");
+// 	system("leaks -q a.out");
+// 	return (0);
+// }
