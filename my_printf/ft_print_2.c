@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 02:20:45 by nutar             #+#    #+#             */
-/*   Updated: 2023/02/08 13:10:25 by nutar            ###   ########.fr       */
+/*   Updated: 2023/02/08 16:07:28 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ static int	ft_putnbr_int(int n, int count)
 {
 	char			c;
 	unsigned int	n_abs;
+	double			tmp;
 
 	if (n < 0)
 	{
@@ -39,7 +40,11 @@ static int	ft_putnbr_int(int n, int count)
 		count++;
 	}
 	if (n < 0)
-		n_abs = -n;
+	{
+		tmp = n;
+		tmp *= -1;
+		n_abs = (unsigned int)tmp;
+	}
 	else
 		n_abs = n;
 	if (n_abs / 10)
