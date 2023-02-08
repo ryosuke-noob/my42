@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 02:20:45 by nutar             #+#    #+#             */
-/*   Updated: 2022/10/22 20:17:11 by nutar            ###   ########.fr       */
+/*   Updated: 2023/02/08 13:10:25 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	ft_putnbr_unsigned_hex(unsigned long long n, int flag, int count)
 	char	c;
 
 	if (n / 16)
-		ft_putnbr_unsigned_hex(n / 16, flag, count + 1);
+		count = ft_putnbr_unsigned_hex(n / 16, flag, count + 1);
 	if (0 <= n % 16 && n % 16 <= 9)
 		c = n % 16 + '0';
 	else if (flag == 'x')

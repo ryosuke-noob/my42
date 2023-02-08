@@ -78,9 +78,20 @@ size_t	ft_strlen(const char *c)
 // 	int				i = 0;//INT_MIN - 1, INT_MIN, 0, INT_MAX, INT_MAX + 1
 // 	char			s[] = "abcde";//NULL, isprint, !isprint 
 // 	char			c = 'c';//isprint, !isprint
-// 	int				p = 10;//NUll, !NULL
-// 	int				x = INT_MAX;//INT_MIN - 1, INT_MIN, 0, INT_MAX, INT_MAX + 1
+// 	int				p = -1;//NUll, !NULL, -1
+// 	int				x = -16;//INT_MIN - 1, INT_MIN, 0, INT_MAX, INT_MAX + 1, 16, -16, 9223372036854775807LL
 // 	unsigned int	u = 10;//UINT_MAX, UINT_MAX + 1, 0, -1, 10
+
+// 	ft_printf(" : %i]\n",ft_printf("[%d",d));
+// 	ft_printf(" : %i]\n",ft_printf("[%i",i));
+// 	ft_printf(" : %i]\n",ft_printf("[%s",s));
+// 	ft_printf(" : %i]\n",ft_printf("[%s",(char *)0));
+// 	ft_printf(" : %i]\n",ft_printf("[%c",c));
+// 	ft_printf(" : %i]\n",ft_printf("[%p",&p));
+// 	ft_printf(" : %i]\n",ft_printf("[%p",NULL));
+// 	ft_printf(" : %i]\n",ft_printf("[%x",x));
+// 	ft_printf(" : %i]\n",ft_printf("[%X",x));
+// 	ft_printf(" : %i]\n",ft_printf("[%u",u));
 
 // 	// ft_printf("%d\n",d);
 // 	// ft_printf("%i\n",i);
@@ -89,21 +100,36 @@ size_t	ft_strlen(const char *c)
 // 	// ft_printf("%c\n",c);
 // 	// ft_printf("%p\n",&p);
 // 	// ft_printf("%p\n",NULL);
+// 	// // ft_printf("%p\n",-1); error
 // 	// ft_printf("%x\n",x);
 // 	// ft_printf("%X\n",x);
+// 	// // ft_printf("%x\n",9223372036854775807LL); error
+// 	// // ft_printf("%X\n",9223372036854775807LL); error
 // 	// ft_printf("%u\n",u);
-// 	ft_printf("%d|%i|%s|%c|%p|%x|%X|%u\n",d,i,s,c,&p,x,x,u);
+// 	// // ft_printf("%d|%i|%s|%c|%p|%x|%X|%u\n",d,i,s,c,&p,x,x,u);
 // 	printf("\n");
-// 	printf("%d|%i|%s|%c|%p|%x|%X|%u\n",d,i,s,c,&p,x,x,u);
-// 	// printf("%d\n",d);
+// 	// printf("%d|%i|%s|%c|%p|%x|%X|%u\n",d,i,s,c,&p,x,x,u);
+// 	printf(" : %i]\n",printf("[%d",d));
+// 	printf(" : %i]\n",printf("[%i",i));
+// 	printf(" : %i]\n",printf("[%s",s));
+// 	printf(" : %i]\n",printf("[%s",(char *)0));
+// 	printf(" : %i]\n",printf("[%c",c));
+// 	printf(" : %i]\n",printf("[%p",&p));
+// 	printf(" : %i]\n",printf("[%p",NULL));
+// 	printf(" : %i]\n",printf("[%x",x));
+// 	printf(" : %i]\n",printf("[%X",x));
+// 	printf(" : %i]\n",printf("[%u",u));
 // 	// printf("%i\n",i);
 // 	// printf("%s\n",s);
 // 	// printf("%s\n",(char *)0);
 // 	// printf("%c\n",c);
 // 	// printf("%p\n",&p);
 // 	// printf("%p\n",NULL);
+// 	// // printf("%p\n",-1); error
 // 	// printf("%x\n",x);
 // 	// printf("%X\n",x);
+// 	// // printf("%x\n",9223372036854775807LL); error
+// 	// // printf("%X\n",9223372036854775807LL); error
 // 	// printf("%u\n",u);
 // 	return (0);
 // }
