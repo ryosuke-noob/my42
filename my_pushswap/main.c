@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 18:44:56 by nutar             #+#    #+#             */
-/*   Updated: 2023/03/25 19:40:28 by nutar            ###   ########.fr       */
+/*   Updated: 2023/03/25 19:52:20 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	main(int argc, char **argv)
 	}
 	printf("\n");
 
-	rr(&stack);
+	rrr(&stack);
 
 	printf("[check stack: AFTER]\n");
 	tmp = stack.stack_a;
