@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 18:44:56 by nutar             #+#    #+#             */
-/*   Updated: 2023/03/24 22:03:33 by nutar            ###   ########.fr       */
+/*   Updated: 2023/03/25 16:40:46 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ static t_integers	arg_check(int argc, char **argv)
 {
 	t_integers	integers;
 
-	if (argc < 2)
-		error_func(NULL);
+	if (argc == 1)
+		exit(0);
 	if (argc == 2)
 		integers = arg_2_check_all(argc, argv);
 	else
