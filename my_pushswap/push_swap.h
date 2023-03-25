@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 17:27:58 by nutar             #+#    #+#             */
-/*   Updated: 2023/03/25 21:22:09 by nutar            ###   ########.fr       */
+/*   Updated: 2023/03/25 22:23:24 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,19 +68,22 @@ t_list		*my_lstnew(int content);
 t_stack		create_stack(t_integers	integers);
 
 //command
-void		sa(t_stack *stack);
-void		sb(t_stack *stack);
+void		sa(t_stack *stack, int flag);
+void		sb(t_stack *stack, int flag);
 void		ss(t_stack *stack);
-void		ra(t_stack *stack);
-void		rb(t_stack *stack);
+void		ra(t_stack *stack, int flag);
+void		rb(t_stack *stack, int flag);
 void		rr(t_stack *stack);
-void		rra(t_stack *stack);
-void		rrb(t_stack *stack);
+void		rra(t_stack *stack, int flag);
+void		rrb(t_stack *stack, int flag);
 void		rrr(t_stack *stack);
 void		pa(t_stack *stack);
 void		pb(t_stack *stack);
 
 //judge
-int		judge(t_stack stack, int flag);
+int			judge(t_stack stack, int flag);
+
+//sort
+void		branch(t_stack *stack);
 
 #endif

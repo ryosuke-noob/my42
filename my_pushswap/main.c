@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 18:44:56 by nutar             #+#    #+#             */
-/*   Updated: 2023/03/25 21:25:22 by nutar            ###   ########.fr       */
+/*   Updated: 2023/03/25 22:30:09 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ int	main(int argc, char **argv)
 	//stack
 	stack = create_stack(integers);
 
-
-
+	// //sort
+	// branch(&stack);
 
 	// //check integers
 	// printf("[check integers]\n");
@@ -60,7 +60,10 @@ int	main(int argc, char **argv)
 	printf("[%d]\n",stack.size_a);
 
 	//command
-	pb(&stack);
+	printf("---command---\n");
+	branch(&stack);
+	printf("\n-------------\n");
+	// pb(&stack);
 	// pb(&stack);
 	// pb(&stack);
 	// pb(&stack);

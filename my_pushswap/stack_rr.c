@@ -6,13 +6,13 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 19:41:08 by nutar             #+#    #+#             */
-/*   Updated: 2023/03/25 19:52:06 by nutar            ###   ########.fr       */
+/*   Updated: 2023/03/25 22:28:25 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	rra(t_stack *stack)
+void	rra(t_stack *stack, int flag)
 {
 	t_list	*tmp;
 	t_list	*top;
@@ -23,7 +23,7 @@ void	rra(t_stack *stack)
 		return ;
 	if (stack->stack_a->next->next == NULL)
 	{
-		sa(stack);
+		sa(stack, 0);
 		return ;
 	}
 	tmp = stack->stack_a;
@@ -35,9 +35,11 @@ void	rra(t_stack *stack)
 	stack->stack_a = bottom;
 	bottom->next = top;
 	semi_bottom->next = NULL;
+	if (flag != 'r')
+		printf("rra ");
 }
 
-void	rrb(t_stack *stack)
+void	rrb(t_stack *stack, int flag)
 {
 	t_list	*tmp;
 	t_list	*top;
@@ -48,7 +50,7 @@ void	rrb(t_stack *stack)
 		return ;
 	if (stack->stack_b->next->next == NULL)
 	{
-		sa(stack);
+		sa(stack, 0);
 		return ;
 	}
 	tmp = stack->stack_b;
@@ -60,10 +62,13 @@ void	rrb(t_stack *stack)
 	stack->stack_b = bottom;
 	bottom->next = top;
 	semi_bottom->next = NULL;
+	if (flag != 'r')
+		printf("rrb ");
 }
 
 void	rrr(t_stack *stack)
 {
-	rra(stack);
-	rrb(stack);
+	rra(stack, 'r');
+	rrb(stack, 'r');
+	printf("rrr ");
 }

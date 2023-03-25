@@ -6,13 +6,13 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 19:19:07 by nutar             #+#    #+#             */
-/*   Updated: 2023/03/25 19:40:12 by nutar            ###   ########.fr       */
+/*   Updated: 2023/03/25 22:28:40 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ra(t_stack *stack)
+void	ra(t_stack *stack, int flag)
 {
 	t_list	*tmp;
 	t_list	*top;
@@ -28,9 +28,11 @@ void	ra(t_stack *stack)
 	bottom->next = top;
 	stack->stack_a = top->next;
 	top->next = NULL;
+	if (flag != 'r')
+		printf("ra ");
 }
 
-void	rb(t_stack *stack)
+void	rb(t_stack *stack, int flag)
 {
 	t_list	*tmp;
 	t_list	*top;
@@ -46,10 +48,13 @@ void	rb(t_stack *stack)
 	bottom->next = top;
 	stack->stack_b = top->next;
 	top->next = NULL;
+	if (flag != 'r')
+		printf("rb ");
 }
 
 void	rr(t_stack *stack)
 {
-	ra(stack);
-	rb(stack);
+	ra(stack, 'r');
+	rb(stack, 'r');
+	printf("rr ");
 }
