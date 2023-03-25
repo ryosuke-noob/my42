@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 17:27:58 by nutar             #+#    #+#             */
-/*   Updated: 2023/03/25 19:40:58 by nutar            ###   ########.fr       */
+/*   Updated: 2023/03/25 19:56:29 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,7 @@ void		rr(t_stack *stack);
 void		rra(t_stack *stack);
 void		rrb(t_stack *stack);
 void		rrr(t_stack *stack);
+void		pa(t_stack *stack);
+void		pb(t_stack *stack);
 
 #endif
