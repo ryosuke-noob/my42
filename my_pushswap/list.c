@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 17:34:52 by nutar             #+#    #+#             */
-/*   Updated: 2023/03/25 18:22:17 by nutar            ###   ########.fr       */
+/*   Updated: 2023/03/25 21:23:15 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ t_stack	create_stack(t_integers	integers)
 
 	stack.stack_a = NULL;
 	stack.stack_b = NULL;
+	stack.size_a = integers.argc;
+	stack.size_b = 0;
 	i = -1;
 	while (++i < integers.argc)
 	{

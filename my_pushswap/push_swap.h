@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 17:27:58 by nutar             #+#    #+#             */
-/*   Updated: 2023/03/25 21:13:20 by nutar            ###   ########.fr       */
+/*   Updated: 2023/03/25 21:22:09 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ typedef struct s_stack
 {
 	t_list	*stack_a;
 	t_list	*stack_b;
+	int		size_a;
+	int		size_b;
 }	t_stack;
 
 
