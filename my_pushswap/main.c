@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 18:44:56 by nutar             #+#    #+#             */
-/*   Updated: 2023/03/25 18:23:15 by nutar            ###   ########.fr       */
+/*   Updated: 2023/03/25 19:15:27 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	main(int argc, char **argv)
 	printf("\n");
 
 	//check stack
-	printf("[check stack]\n");
+	printf("[check stack: BEFORE]\n");
 	t_list	*tmp;
 	tmp = stack.stack_a;
 	while (tmp)
@@ -58,6 +58,16 @@ int	main(int argc, char **argv)
 	}
 	printf("\n");
 
+	ss(&stack);
+
+	printf("[check stack: AFTER]\n");
+	tmp = stack.stack_a;
+	while (tmp)
+	{
+		printf("%d ", tmp->content);
+		tmp = tmp->next;
+	}
+	printf("\n");
 	//check leaks
 	// printf("\n-------------------------\n\n");
 	// system("leaks -q a.out");

@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 17:27:58 by nutar             #+#    #+#             */
-/*   Updated: 2023/03/25 18:14:45 by nutar            ###   ########.fr       */
+/*   Updated: 2023/03/25 19:15:43 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,10 @@ void		my_lstadd_back(t_list **lst, t_list *new);
 void		my_lstclear(t_list **lst);
 t_list		*my_lstnew(int content);
 t_stack		create_stack(t_integers	integers);
+
+//command
+void		sa(t_stack *stack);
+void		sb(t_stack *stack);
+void		ss(t_stack *stack);
 
 #endif
