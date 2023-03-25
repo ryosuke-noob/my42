@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 18:44:56 by nutar             #+#    #+#             */
-/*   Updated: 2023/03/25 21:14:14 by nutar            ###   ########.fr       */
+/*   Updated: 2023/03/25 21:16:56 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,36 +59,36 @@ int	main(int argc, char **argv)
 	}
 	printf("\n");
 
-	// //command
-	// pb(&stack);
-	// pb(&stack);
-	// pb(&stack);
-	// pb(&stack);
-	// pb(&stack);
-	// //
+	//command
+	pb(&stack);
+	pb(&stack);
+	pb(&stack);
+	pb(&stack);
+	pb(&stack);
+	//
 
-	// printf("[check stack: AFTER]\n");
-	// printf("stack a: ");
-	// tmp = stack.stack_a;
-	// while (tmp)
-	// {
-	// 	printf("%d ", tmp->content);
-	// 	tmp = tmp->next;
-	// }
-	// printf("\n");
-	// printf("stack b: ");
-	// tmp = stack.stack_b;
-	// while (tmp)
-	// {
-	// 	printf("%d ", tmp->content);
-	// 	tmp = tmp->next;
-	// }
-	// printf("\n");
-
-	//check judge
-	printf("[check judge]\n");
-	printf("%d ", judge(stack, 'a'));
+	printf("[check stack: AFTER]\n");
+	printf("stack a: ");
+	tmp = stack.stack_a;
+	while (tmp)
+	{
+		printf("%d ", tmp->content);
+		tmp = tmp->next;
+	}
 	printf("\n");
+	printf("stack b: ");
+	tmp = stack.stack_b;
+	while (tmp)
+	{
+		printf("%d ", tmp->content);
+		tmp = tmp->next;
+	}
+	printf("\n");
+
+	// //check judge
+	// printf("[check judge]\n");
+	// printf("%d ", judge(stack, 'a'));
+	// printf("\n");
 
 	// // check leaks
 	// printf("\n-------------------------\n\n");
