@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 17:27:58 by nutar             #+#    #+#             */
-/*   Updated: 2023/03/25 22:23:24 by nutar            ###   ########.fr       */
+/*   Updated: 2023/03/27 17:27:41 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct s_integers
 typedef struct s_list
 {
 	int				content;
+	int				number;
 	struct s_list	*next;
 }	t_list;
 
@@ -64,7 +65,7 @@ size_t		ft_strlen(const char *c);
 //list
 void		my_lstadd_back(t_list **lst, t_list *new);
 void		my_lstclear(t_list **lst);
-t_list		*my_lstnew(int content);
+t_list		*my_lstnew(int content, int number);
 t_stack		create_stack(t_integers	integers);
 
 //command
