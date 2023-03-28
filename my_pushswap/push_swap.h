@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 17:27:58 by nutar             #+#    #+#             */
-/*   Updated: 2023/03/27 17:27:41 by nutar            ###   ########.fr       */
+/*   Updated: 2023/03/28 23:03:54 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,9 @@ typedef struct s_stack
 	int		size_b;
 }	t_stack;
 
+//my_check
+void		check_stack(t_stack *stack);
+
 
 //arg_check
 t_integers	arg_check_all(int argc, char **argv);
@@ -85,6 +88,10 @@ void		pb(t_stack *stack);
 int			judge(t_stack stack, int flag);
 
 //sort
+void		asc_sort(t_stack *stack, int flag);
+void		dec_sort(t_stack *stack, int flag);
+void		a_sort(t_stack *stack, int size);
+void		b_sort(t_stack *stack, int size, int max, int min);
 void		branch(t_stack *stack);
 
 #endif
