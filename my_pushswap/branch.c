@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 21:33:23 by nutar             #+#    #+#             */
-/*   Updated: 2023/03/28 23:35:17 by nutar            ###   ########.fr       */
+/*   Updated: 2023/03/29 00:22:02 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,79 @@ void	dec_sort(t_stack *stack, int flag)
 		if (result == 213 || result == 123)
 			rrb(stack, 'b');	
 	}
+}
+
+void	judge_s(t_stack *stack)
+{
+	int	jdg_a;
+	int	jdg_b;
+
+	jdg_a = judge(*stack, 'a');
+	jdg_b = judge(*stack, 'b');
+	if ((jdg_a == 213 || jdg_a == 321 || jdg_a == 132 || jdg_a == 21) \
+			&& (jdg_b == 123 || jdg_b == 231 || jdg_b == 312 || jdg_b == 12))
+		ss(stack);
+	else if (jdg_a == 213 || jdg_a == 321 || jdg_a == 132 || jdg_a == 21)
+		sa(stack, 'a');
+	else if (jdg_b == 123 || jdg_b == 231 || jdg_b == 312 || jdg_b == 12)
+		sb(stack, 'b');
+}
+
+void	judge_r(t_stack *stack)
+{
+	int	jdg_a;
+	int	jdg_b;
+
+	jdg_a = judge(*stack, 'a');
+	jdg_b = judge(*stack, 'b');
+	if ((jdg_a == 312 || jdg_a == 132) && (jdg_b == 132 || jdg_b == 312))
+		rr(stack);
+	else if (jdg_a == 312 || jdg_a == 132)
+		ra(stack, 'a');
+	else if (jdg_b == 132 || jdg_b == 312)
+		rb(stack, 'b');
+}
+
+void	judge_rr(t_stack *stack)
+{
+	int	jdg_a;
+	int	jdg_b;
+
+	jdg_a = judge(*stack, 'a');
+	jdg_b = judge(*stack, 'b');
+	if ((jdg_a == 321 || jdg_a == 231) && (jdg_b == 213 || jdg_b == 123))
+		rrr(stack);
+	else if (jdg_a == 321 || jdg_a == 231)
+		rra(stack, 'a');
+	else if (jdg_b == 213 || jdg_b == 123)
+		rrb(stack, 'b');
+}
+
+void	sort_under_6(t_stack *stack)
+{
+	int		i;
+	t_list	*index;
+
+	index = stack->stack_a;
+	while (index->next != NULL)
+	{
+		if (index->number == stack->size_a / 2 + 1)
+			break ;
+		index = index->next;
+	}
+	i = stack->size_a;
+	while (i-- > 0)
+	{
+		if (stack->stack_a->content < index->content)
+			pb(stack);
+		else
+			ra(stack, 'a');
+	}
+	judge_s(stack);
+	judge_r(stack);
+	judge_rr(stack);
+	while (stack->size_b > 0)
+		pa(stack);
 }
 
 void	b_sort(t_stack *stack, int size, int max, int min)
@@ -119,45 +192,10 @@ void	a_sort(t_stack *stack, int size)
 void	branch(t_stack *stack)
 {
 	if (stack->size_a > 6)
-	{
 		a_sort(stack, stack->size_a);
-	}
 	else if (stack->size_a > 3)
-	{
-		int		i;
-		t_list	*index;
-
-		index = stack->stack_a;
-		while (index->next != NULL)
-		{
-			if (index->number == stack->size_a / 2 + 1)
-				break ;
-			index = index->next;
-		}
-		printf("[index : %d]", index->content);
-		i = stack->size_a;
-		while (i-- > 0)
-		{
-			if (stack->stack_a->content < index->content)
-				pb(stack);
-			else
-				ra(stack, 'a');
-		}
-		//
-		// check_stack(stack);
-		//
-		asc_sort(stack, 'a');
-		dec_sort(stack, 'b');
-		//
-		// check_stack(stack);
-		//
-		while (stack->size_b > 0)
-		{
-			// rrb(stack, 'b');
-			pa(stack);
-		}
-	}
+		sort_under_6(stack);
 	else
-		asc_sort(stack,'a');
+		asc_sort(stack, 'a');
 	return ;
 }
