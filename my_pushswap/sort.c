@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 21:33:23 by nutar             #+#    #+#             */
-/*   Updated: 2023/03/29 00:22:02 by nutar            ###   ########.fr       */
+/*   Updated: 2023/03/29 11:43:02 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,21 +135,22 @@ void	sort_under_6(t_stack *stack)
 		pa(stack);
 }
 
+void	push_back(t_stack *stack)
+{
+	pa(stack);
+	ra(stack, 'a');
+}
+
 void	b_sort(t_stack *stack, int size, int max, int min)
 {
 	int	i;
 
-	// printf("\n[size_b == %d]", size);
-	// check_stack(stack);
 	if (size <= 3)
 	{
 		asc_sort(stack, 'b');
 		i = -1;
 		while (++i < size)
-		{
-			pa(stack);
-			ra(stack, 'a');
-		}
+			push_back(stack);
 		return ;
 	}
 	i = -1;
@@ -189,7 +190,7 @@ void	a_sort(t_stack *stack, int size)
 	b_sort(stack, size - size / 2, size, size / 2 + 1);
 }
 
-void	branch(t_stack *stack)
+void	sort(t_stack *stack)
 {
 	if (stack->size_a > 6)
 		a_sort(stack, stack->size_a);

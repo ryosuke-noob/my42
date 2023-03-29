@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 18:44:56 by nutar             #+#    #+#             */
-/*   Updated: 2023/03/27 17:56:30 by nutar            ###   ########.fr       */
+/*   Updated: 2023/03/29 11:43:29 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int	main(int argc, char **argv)
 
 	//command
 	printf("---command---\n");
-	branch(&stack);
+	sort(&stack);
 	printf("\n-------------\n");
 	//
 

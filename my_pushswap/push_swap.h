@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 17:27:58 by nutar             #+#    #+#             */
-/*   Updated: 2023/03/28 23:03:54 by nutar            ###   ########.fr       */
+/*   Updated: 2023/03/29 11:43:12 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,6 @@ void		asc_sort(t_stack *stack, int flag);
 void		dec_sort(t_stack *stack, int flag);
 void		a_sort(t_stack *stack, int size);
 void		b_sort(t_stack *stack, int size, int max, int min);
-void		branch(t_stack *stack);
+void		sort(t_stack *stack);
 
 #endif
