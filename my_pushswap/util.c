@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 17:34:20 by nutar             #+#    #+#             */
-/*   Updated: 2023/03/29 20:15:39 by nutar            ###   ########.fr       */
+/*   Updated: 2023/03/29 21:09:29 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int	ft_atoi_edit(const char *str, int *array)
 	long	i;
 	long	minus;
 	long	ret;
-	int		tmp;
 
 	i = 0;
 	minus = 1;

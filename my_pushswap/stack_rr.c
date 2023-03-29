@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 19:41:08 by nutar             #+#    #+#             */
-/*   Updated: 2023/03/27 18:01:25 by nutar            ###   ########.fr       */
+/*   Updated: 2023/03/29 20:26:33 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	rra(t_stack *stack, int flag)
 	bottom->next = top;
 	semi_bottom->next = NULL;
 	if (flag != 'r')
-		printf("rra ");
+		printf("rra\n");
 }
 
 void	rrb(t_stack *stack, int flag)
@@ -63,12 +63,12 @@ void	rrb(t_stack *stack, int flag)
 	bottom->next = top;
 	semi_bottom->next = NULL;
 	if (flag != 'r')
-		printf("rrb ");
+		printf("rrb\n");
 }
 
 void	rrr(t_stack *stack)
 {
 	rra(stack, 'r');
 	rrb(stack, 'r');
-	printf("rrr ");
+	printf("rrr\n");
 }

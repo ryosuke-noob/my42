@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 19:56:34 by nutar             #+#    #+#             */
-/*   Updated: 2023/03/27 16:59:14 by nutar            ###   ########.fr       */
+/*   Updated: 2023/03/29 20:26:41 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	pa(t_stack *stack)
 	stack->stack_a = move;
 	stack->size_a++;
 	stack->size_b--;
-	printf("pa ");
+	printf("pa\n");
 }
 
 void	pb(t_stack *stack)
@@ -39,5 +39,5 @@ void	pb(t_stack *stack)
 	stack->stack_b = move;
 	stack->size_b++;
 	stack->size_a--;
-	printf("pb ");
+	printf("pb\n");
 }

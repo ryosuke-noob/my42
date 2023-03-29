@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 17:30:39 by nutar             #+#    #+#             */
-/*   Updated: 2023/03/24 21:45:16 by nutar            ###   ########.fr       */
+/*   Updated: 2023/03/29 21:03:41 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void	check_all_digits_2(int argc, char **argv)
 			if (ft_isdigit(argv[i][j]) == FALSE)
 				break ;
 		if (argv[i][j] != '\0' || j > 11 || ft_isdigit(argv[i][j - 1]) == FALSE)
-			error_func(NULL);
+			error_func_2(NULL, argc, argv);
 	}
 }
 
@@ -59,7 +59,7 @@ static int	*check_int_2(int argc, char **argv)
 
 	array = malloc(sizeof(int) * argc);
 	if (array == NULL)
-		error_func(NULL);
+		error_func_2(NULL, argc, argv);
 	i = -1;
 	while (++i < argc)
 		array[i] = ft_atoi_edit(argv[i], array);
@@ -83,7 +83,6 @@ static void	check_duplicate_digits(t_integers *integers)
 }
 
 //check argv, and return array of integers
-//array[0] has middle value of integers
 t_integers	arg_2_check_all(int argc, char **argv)
 {
 	t_integers	integers;
