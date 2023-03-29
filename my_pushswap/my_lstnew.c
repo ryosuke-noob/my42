@@ -12,15 +12,15 @@
 
 #include "push_swap.h"
 
-t_list	*my_lstnew(int content, int number)
-{
-	t_list	*new;
+// t_list	*my_lstnew(int content, int number)
+// {
+// 	t_list	*new;
 
-	new = (t_list *)malloc(sizeof(t_list));
-	if (!new)
-		return (0);
-	new->content = content;
-	new->number = number;
-	new->next = 0;
-	return (new);
-}
+// 	new = (t_list *)malloc(sizeof(t_list));
+// 	if (!new)
+// 		return (0);
+// 	new->content = content;
+// 	new->number = number;
+// 	new->next = 0;
+// 	return (new);
+// }

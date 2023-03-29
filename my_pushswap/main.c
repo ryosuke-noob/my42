@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 18:44:56 by nutar             #+#    #+#             */
-/*   Updated: 2023/03/29 11:43:29 by nutar            ###   ########.fr       */
+/*   Updated: 2023/03/29 20:23:43 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,8 +111,8 @@ int	main(int argc, char **argv)
 	// printf("%d ", judge(stack, 'a'));
 	// printf("\n");
 
-	// // check leaks
+	// check leaks
 	// printf("\n-------------------------\n\n");
 	// system("leaks -q a.out");
-	return (0);
+	// return (0);
 }

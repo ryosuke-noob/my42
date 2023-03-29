@@ -6,13 +6,13 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 17:34:52 by nutar             #+#    #+#             */
-/*   Updated: 2023/03/27 17:33:56 by nutar            ###   ########.fr       */
+/*   Updated: 2023/03/29 20:20:33 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ret_number(t_integers integers, int content)
+static int	ret_number(t_integers integers, int content)
 {
 	int	i;
 	int	number;
@@ -48,4 +48,49 @@ t_stack	create_stack(t_integers	integers)
 		my_lstadd_back(&stack.stack_a, new);
 	}
 	return (stack);
+}
+
+void	my_lstadd_back(t_list **lst, t_list *new)
+{
+	t_list	*tmp;
+
+	if (!lst)
+		return ;
+	if (!(*lst))
+		*lst = new;
+	else
+	{
+		tmp = *lst;
+		while (tmp->next)
+			tmp = tmp->next;
+		tmp->next = new;
+	}
+}
+
+void	my_lstclear(t_list **lst)
+{
+	t_list	*tmp;
+
+	if (!lst || !(*lst))
+		return ;
+	tmp = *lst;
+	while (lst && *lst)
+	{
+		tmp = (*lst)->next;
+		free(*lst);
+		*lst = tmp;
+	}
+}
+
+t_list	*my_lstnew(int content, int number)
+{
+	t_list	*new;
+
+	new = (t_list *)malloc(sizeof(t_list));
+	if (!new)
+		return (0);
+	new->content = content;
+	new->number = number;
+	new->next = 0;
+	return (new);
 }

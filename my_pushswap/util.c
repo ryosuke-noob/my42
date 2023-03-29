@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 17:34:20 by nutar             #+#    #+#             */
-/*   Updated: 2023/03/24 20:52:41 by nutar            ###   ########.fr       */
+/*   Updated: 2023/03/29 20:15:39 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,10 @@ int	ft_isdigit(int c)
 		return (1);
 	else
 		return (0);
+}
+
+void	push_back(t_stack *stack)
+{
+	pa(stack);
+	ra(stack, 'a');
 }

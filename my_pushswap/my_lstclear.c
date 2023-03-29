@@ -12,17 +12,17 @@
 
 #include "push_swap.h"
 
-void	my_lstclear(t_list **lst)
-{
-	t_list	*tmp;
+// void	my_lstclear(t_list **lst)
+// {
+// 	t_list	*tmp;
 
-	if (!lst || !(*lst))
-		return ;
-	tmp = *lst;
-	while (lst && *lst)
-	{
-		tmp = (*lst)->next;
-		free(*lst);
-		*lst = tmp;
-	}
-}
+// 	if (!lst || !(*lst))
+// 		return ;
+// 	tmp = *lst;
+// 	while (lst && *lst)
+// 	{
+// 		tmp = (*lst)->next;
+// 		free(*lst);
+// 		*lst = tmp;
+// 	}
+// }
