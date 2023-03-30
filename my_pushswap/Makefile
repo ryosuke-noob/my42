@@ -9,7 +9,7 @@ SRCS	= 	arg_2_check.c\
 			judge_cmd.c\
 			judge_sort_case.c\
 			list.c\
-			main.c\
+			push_swap.c\
 			sort.c\
 			stack_p.c\
 			stack_s.c\

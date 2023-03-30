@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 18:44:56 by nutar             #+#    #+#             */
-/*   Updated: 2023/03/29 21:04:01 by nutar            ###   ########.fr       */
+/*   Updated: 2023/03/30 16:42:47 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,10 @@ int	main(int argc, char **argv)
 // 	stack = create_stack(integers);
 
 // 	// //sort
-// 	sort(&stack);
+// 	// sort(&stack);
 
-// 	my_lstclear(&stack.stack_a);
-// 	// //check integers
+// 	// my_lstclear(&stack.stack_a);
+// 	// check integers
 // 	// printf("[check integers]\n");
 // 	// int			i;
 // 	// i = -1;
@@ -83,41 +83,42 @@ int	main(int argc, char **argv)
 // 	// printf("\n");
 
 // 	// //check stack
-// 	// printf("[check stack: BEFORE]\n");
-// 	// t_list	*tmp;
-// 	// printf("stack a: ");
-// 	// tmp = stack.stack_a;
-// 	// while (tmp)
-// 	// {
-// 	// 	// printf("[%d,%d] ", tmp->content, tmp->number);
-// 	// 	printf("%d ", tmp->content);
-// 	// 	tmp = tmp->next;
-// 	// }
-// 	// printf("[%d]\n",stack.size_a);
+// 	printf("[check stack: BEFORE]\n");
+// 	t_list	*tmp;
+// 	printf("stack a: ");
+// 	tmp = stack.stack_a;
+// 	while (tmp)
+// 	{
+// 		// printf("[%d,%d] ", tmp->content, tmp->number);
+// 		printf("%d ", tmp->content);
+// 		// printf("%d ", tmp->number);
+// 		tmp = tmp->next;
+// 	}
+// 	printf("[%d]\n",stack.size_a);
 
 // 	// //command
-// 	// printf("---command---\n");
-// 	// sort(&stack);
-// 	// printf("\n-------------\n");
+// 	printf("---command---\n");
+// 	sort(&stack);
+// 	printf("\n-------------\n");
 // 	// //
 
-// 	// printf("[check stack: AFTER]\n");
-// 	// printf("stack a: ");
-// 	// tmp = stack.stack_a;
-// 	// while (tmp)
-// 	// {
-// 	// 	printf("%d ", tmp->content);
-// 	// 	tmp = tmp->next;
-// 	// }
-// 	// printf("[%d]\n",stack.size_a);
-// 	// printf("stack b: ");
-// 	// tmp = stack.stack_b;
-// 	// while (tmp)
-// 	// {
-// 	// 	printf("%d ", tmp->content);
-// 	// 	tmp = tmp->next;
-// 	// }
-// 	// printf("[%d]\n",stack.size_b);
+// 	printf("[check stack: AFTER]\n");
+// 	printf("stack a: ");
+// 	tmp = stack.stack_a;
+// 	while (tmp)
+// 	{
+// 		printf("%d ", tmp->content);
+// 		tmp = tmp->next;
+// 	}
+// 	printf("[%d]\n",stack.size_a);
+// 	printf("stack b: ");
+// 	tmp = stack.stack_b;
+// 	while (tmp)
+// 	{
+// 		printf("%d ", tmp->content);
+// 		tmp = tmp->next;
+// 	}
+// 	printf("[%d]\n",stack.size_b);
 
 // 	// // //check judge
 // 	// // printf("[check judge]\n");
