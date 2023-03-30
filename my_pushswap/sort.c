@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 21:33:23 by nutar             #+#    #+#             */
-/*   Updated: 2023/03/30 19:02:40 by nutar            ###   ########.fr       */
+/*   Updated: 2023/03/30 19:04:18 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,10 @@ static void	b_sort(t_stack *stack, int size, int max, int min)
 		while (++i < size)
 		{
 			if (stack->stack_b->number == max || stack->stack_b->number == max - 1)
+			{
 				pa(stack);
+				break ;
+			}
 			else
 				rb(stack, 'b');
 			// check_stack(stack);
