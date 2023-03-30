@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 17:34:20 by nutar             #+#    #+#             */
-/*   Updated: 2023/03/29 21:09:29 by nutar            ###   ########.fr       */
+/*   Updated: 2023/03/30 18:47:23 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,24 @@ void	push_back(t_stack *stack)
 {
 	pa(stack);
 	ra(stack, 'a');
+}
+
+int	check_r_rr(t_stack stack, int target)
+{
+	int		i;
+	t_list	*tmp;
+
+	i = 0;
+	tmp = stack.stack_b;
+	while (tmp != NULL)
+	{
+		if (tmp->number == target)
+			break ;
+		i++;
+		tmp = tmp->next;
+	}
+	if (i < stack.size_b / 2)
+		return ('r');
+	else
+		return ('r' * 2);
 }
