@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 17:27:58 by nutar             #+#    #+#             */
-/*   Updated: 2023/03/30 18:48:02 by nutar            ###   ########.fr       */
+/*   Updated: 2023/03/30 19:33:41 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,6 @@ void		push_back(t_stack *stack);
 void		judge_s(t_stack *stack);
 void		judge_r(t_stack *stack);
 void		judge_rr(t_stack *stack);
+void		judge_s_size_5(t_stack *stack);
 
 #endif
