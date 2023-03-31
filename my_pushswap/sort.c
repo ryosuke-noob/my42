@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 21:33:23 by nutar             #+#    #+#             */
-/*   Updated: 2023/03/31 16:36:06 by nutar            ###   ########.fr       */
+/*   Updated: 2023/04/01 00:12:01 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,36 @@ static void	sort_under_6(t_stack *stack)
 		pa(stack);
 }
 
+int	count_min_b(t_stack *stack, int size, int min)
+{
+	int		i;
+	int		count;
+	t_list	*tmp;
+
+	count = 0;
+	tmp = stack->stack_b;
+	i = -1;
+	while (++i < size)
+	{
+		if (tmp->number == min)
+		{
+			count++;
+			min++;
+		}
+		tmp = tmp->next;
+	}
+	return (count);
+}
+
 static void	b_sort(t_stack *stack, int size, int max, int min)
 {
 	int	i;
+	int	tmp_min;
+	int	count;
 
-	// printf("[size==%d, max==%d]\n",size,max);
+	if (size == 0)
+		return ;
+	// printf("[size==%d, max==%d, min==%d]\n",size,max,min);
 	// check_stack(stack);
 	if (size <= 3)
 	{
@@ -101,18 +126,56 @@ static void	b_sort(t_stack *stack, int size, int max, int min)
 		return ;
 	}
 	i = -1;
+	count = count_min_b(stack, size, min);
+	tmp_min = min + count;
 	while (++i < size)
 	{
-		if (stack->stack_b->number >= size / 2 + min)
+		if (stack->stack_b->number == min)
+		{
+			push_back(stack);
+			min++;
+		}
+		else if (stack->stack_b->number >= (size - count) / 2 + tmp_min)
 			pa(stack);
 		else
 			rb(stack, 'b');
 	}
+	size -= count;
 	b_sort(stack, stack->size_b, max - size / 2 - size % 2, min);
+	// printf("[size==%d, max==%d, min==%d]\n",size,max,min);
+	// check_stack(stack);
 	i = -1;
 	while (++i < size - size / 2)
 		pb(stack);
-	b_sort(stack, stack->size_b, max, min + size / 2);
+	b_sort(stack, stack->size_b, max, tmp_min + size / 2);
+
+	// i = -1;
+	// while (++i < size)
+	// {
+	// 	if (stack->stack_b->number >= size / 2 + min)
+	// 		pa(stack);
+	// 	else
+	// 		rb(stack, 'b');
+	// }
+	// b_sort(stack, stack->size_b, max - size / 2 - size % 2, min);
+	// i = -1;
+	// while (++i < size - size / 2)
+	// 	pb(stack);
+	// b_sort(stack, stack->size_b, max, min + size / 2);
+	
+	// i = -1;
+	// while (++i < size)
+	// {
+	// 	if (stack->stack_b->number >= size / 2 + min)
+	// 		pa(stack);
+	// 	else
+	// 		rb(stack, 'b');
+	// }
+	// b_sort(stack, stack->size_b, max - size / 2 - size % 2, min);
+	// i = -1;
+	// while (++i < size - size / 2)
+	// 	pb(stack);
+	// b_sort(stack, stack->size_b, max, min + size / 2);
 }
 
 static void	a_sort(t_stack *stack, int size)
