@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 20:13:27 by nutar             #+#    #+#             */
-/*   Updated: 2023/03/31 16:12:21 by nutar            ###   ########.fr       */
+/*   Updated: 2023/03/31 16:36:27 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,12 @@ void	judge_s_size_5(t_stack *stack)
 	if (jdg_a == 1 && (jdg_b == 213 || \
 						jdg_b == 321 || jdg_b == 132 || jdg_b == 21))
 		ss(stack);
-	else if (jdg_a == 1)
-		sa(stack, 'a');
 	else if (jdg_b == 213 || jdg_b == 321 || jdg_b == 132 || jdg_b == 21)
 		sb(stack, 'b');
+	else if (jdg_a == 1)
+		sa(stack, 'a');
+	if (jdg_b == 312 || jdg_b == 132)
+		rb(stack, 'b');
+	if (jdg_b == 321 || jdg_b == 231)
+		rrb(stack, 'b');
 }
-
