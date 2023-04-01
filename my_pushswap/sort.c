@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 21:33:23 by nutar             #+#    #+#             */
-/*   Updated: 2023/04/01 15:09:47 by nutar            ###   ########.fr       */
+/*   Updated: 2023/04/01 22:00:19 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,15 +91,22 @@ int	count_min(t_stack *stack, int size, int min, int flag)
 int	count_last_max(t_stack *stack, int size, int max)
 {
 	int		i;
+	int		count;
 	t_list	*tmp;
 
 	tmp = stack->stack_a;
 	i = -1;
-	while (++i < size - 1)
-		tmp = tmp->next;
-	if (tmp->number == max)
-		return (1);
-	return (0);
+	count = 0;
+	while (++i < size)
+	{
+		if (tmp->number == max - size + i + 1)
+			count++;
+		else
+			count *= 0;
+		if (tmp->next != NULL)
+			tmp = tmp->next;
+	}
+	return (count);
 }
 
 static void	b_sort(t_stack *stack, int size, int max, int min)
@@ -119,7 +126,7 @@ static void	b_sort(t_stack *stack, int size, int max, int min)
 	// 		push_back(stack);
 	// 	return ;
 	// }
-	if (size <= 4)
+	if (size <= 6)
 	{
 		count = 0;
 		while (stack->size_b)
@@ -134,7 +141,7 @@ static void	b_sort(t_stack *stack, int size, int max, int min)
 				push_back(stack);
 				min++;
 			}
-			else if (check_r_rr(*stack, max) == 'r')
+			else if (check_r_rr(*stack, max) == 'r' || check_r_rr(*stack, min) == 'r')
 				rb(stack, 'b');
 			else
 				rrb(stack, 'b');
@@ -175,7 +182,7 @@ static void	b_sort(t_stack *stack, int size, int max, int min)
 			pb(stack);
 	}
 	b_sort(stack, stack->size_b, max - cnt_max, tmp_min);
-	if (cnt_max == 1)
+	while (cnt_max-- > 0)
 		ra(stack, 'a');
 }
 
@@ -195,7 +202,7 @@ static void	a_sort(t_stack *stack, int size)
 			ra(stack, 'a');
 	}
 	b_sort(stack, size / 2 - cnt_max, size / 2 - cnt_max, 1);
-	if (cnt_max == 1)
+	while (cnt_max-- > 0)
 		ra(stack, 'a');
 	// count = count_min(stack, size - size / 2, size / 2 + 1, 'a');
 	count = size / 2 + 1;
