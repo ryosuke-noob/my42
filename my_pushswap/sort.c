@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 21:33:23 by nutar             #+#    #+#             */
-/*   Updated: 2023/04/01 14:01:02 by nutar            ###   ########.fr       */
+/*   Updated: 2023/04/01 15:09:47 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,38 +109,30 @@ static void	b_sort(t_stack *stack, int size, int max, int min)
 	int	count;
 	int	cnt_max;
 
-	if (size == 0)
-		return ;
-	if (size <= 3)
+	// if (size == 0)
+	// 	return ;
+	// if (size <= 3)
+	// {
+	// 	asc_sort(stack, 'b');
+	// 	i = -1;
+	// 	while (++i < size)
+	// 		push_back(stack);
+	// 	return ;
+	// }
+	if (size <= 4)
 	{
-		asc_sort(stack, 'b');
-		i = -1;
-		while (++i < size)
-			push_back(stack);
-		return ;
-	}
-	if (size == 4)
-	{
-		i = -1;
-		while (++i < size)
+		count = 0;
+		while (stack->size_b)
 		{
-			if (stack->stack_b->number == max)
+			if (stack->stack_b->number == max - count)
 			{
 				pa(stack);
-				asc_sort(stack, 'b');
-				i = -1;
-				while (++i < 3)
-					push_back(stack);
-				return ;
+				count++;
 			}
 			else if (stack->stack_b->number == min)
 			{
 				push_back(stack);
-				asc_sort(stack, 'b');
-				i = -1;
-				while (++i < 3)
-					push_back(stack);
-				return ;
+				min++;
 			}
 			else if (check_r_rr(*stack, max) == 'r')
 				rb(stack, 'b');
