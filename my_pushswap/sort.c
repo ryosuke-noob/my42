@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 21:33:23 by nutar             #+#    #+#             */
-/*   Updated: 2023/04/01 22:29:03 by nutar            ###   ########.fr       */
+/*   Updated: 2023/04/02 11:11:50 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,8 @@ static void	b_sort(t_stack *stack, int size, int max, int min)
 	// 		push_back(stack);
 	// 	return ;
 	// }
+	// printf("\n[size: %d, max: %d, min: %d]]", size, max, min);
+	// check_stack(stack);
 	if (size <= 6)
 	{
 		count = 0;
@@ -164,7 +166,7 @@ static void	b_sort(t_stack *stack, int size, int max, int min)
 		{
 			pa(stack);
 			min++;
-			if ( stack->stack_b->number != min && (stack->stack_b->number < (size - count) / 2 + tmp_min))
+			if (stack->stack_b != NULL && stack->stack_b->number != min && (stack->stack_b->number < (size - count) / 2 + tmp_min))
 			{
 				rr(stack);
 				i++;
@@ -178,6 +180,7 @@ static void	b_sort(t_stack *stack, int size, int max, int min)
 			rb(stack, 'b');
 	}
 	size -= count;
+	// printf("over");
 	b_sort(stack, stack->size_b, max - size / 2 - size % 2, min);
 	tmp_min += size / 2;
 	i = -1;
@@ -192,6 +195,7 @@ static void	b_sort(t_stack *stack, int size, int max, int min)
 		else
 			pb(stack);
 	}
+	// printf("under");
 	b_sort(stack, stack->size_b, max - cnt_max, tmp_min);
 	while (cnt_max-- > 0)
 		ra(stack, 'a');
@@ -215,6 +219,8 @@ static void	a_sort(t_stack *stack, int size)
 	b_sort(stack, size / 2 - cnt_max, size / 2 - cnt_max, 1);
 	while (cnt_max-- > 0)
 		ra(stack, 'a');
+	// printf("\n[size: %d, max: %d, min: %d]]", size, cnt_max, 1);
+	// check_stack(stack);
 	// count = count_min(stack, size - size / 2, size / 2 + 1, 'a');
 	count = size / 2 + 1;
 	i = -1;
