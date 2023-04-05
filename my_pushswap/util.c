@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 17:34:20 by nutar             #+#    #+#             */
-/*   Updated: 2023/04/05 14:17:16 by nutar            ###   ########.fr       */
+/*   Updated: 2023/04/05 17:50:19 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,7 @@ int	ft_isdigit(int c)
 		return (0);
 }
 
-void	push_back(t_stack *stack)
-{
-	pa(stack);
-	ra(stack, 'a');
-}
-
-int	check_r_rr(t_stack stack, int target)
+static int	sub_check_r_rr(t_stack stack, int target)
 {
 	int		i;
 	t_list	*tmp;
@@ -70,6 +64,16 @@ int	check_r_rr(t_stack stack, int target)
 		tmp = tmp->next;
 	}
 	if (i < stack.size_b / 2)
+		return ('r');
+	else
+		return ('r' * 2);
+}
+
+int	check_r_rr(t_stack stack, int max, int min)
+{
+	if (sub_check_r_rr(stack, min) == 'r')
+		return ('r');
+	else if (sub_check_r_rr(stack, max) == 'r')
 		return ('r');
 	else
 		return ('r' * 2);

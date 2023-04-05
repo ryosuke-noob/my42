@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 17:27:58 by nutar             #+#    #+#             */
-/*   Updated: 2023/04/05 17:23:27 by nutar            ###   ########.fr       */
+/*   Updated: 2023/04/05 18:35:22 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 #  define FALSE 0
 # endif
 # ifndef TURE
-#  define TRUE 0
+#  define TRUE 1
 # endif
 
 typedef struct s_integers
@@ -57,7 +57,7 @@ t_integers	arg_2_check_all(int argc, char **argv);
 void		error_func(int	*array);
 int			ft_isdigit(int c);
 int			ft_atoi_edit(const char *str, int *array);
-int			check_r_rr(t_stack stack, int target);
+int			check_r_rr(t_stack stack, int max, int min);
 //ft_split
 char		*ft_strtrim(char const *s1, char const *set);
 char		**ft_split(char const *s, char c);
@@ -88,7 +88,6 @@ int			judge(t_stack stack, int flag);
 
 //sort
 void		sort(t_stack *stack);
-void		push_back(t_stack *stack);
 void		judge_s(t_stack *stack);
 void		judge_r(t_stack *stack);
 void		judge_rr(t_stack *stack);
@@ -102,5 +101,6 @@ void		sub_sort(t_stack *stack, int size, int max, int min);
 // void		bottom_sort(t_stack *stack, int *size, int *max, int *min);
 int			count_last_max(t_stack *stack, int size, int max);
 int			count_min(t_stack *stack, int size, int min, int count);
+int			sub_sort_terminal(t_stack *stack, int max, int min, int count);
 
 #endif

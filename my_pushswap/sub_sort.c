@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 12:42:20 by nutar             #+#    #+#             */
-/*   Updated: 2023/04/05 17:22:06 by nutar            ###   ########.fr       */
+/*   Updated: 2023/04/05 18:35:34 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,51 +82,11 @@ static void	bottom_sort(t_stack *stack, int *size, int *max, int *min)
 void	sub_sort(t_stack *stack, int size, int max, int min)
 {
 	int	i;
-	int	count;
 
 	if (size <= 6)
 	{
-		count = 0;
-		while (stack->size_b)
-		{
-			if (stack->stack_b->number == max - count)
-			{
-				pa(stack);
-				count++;
-			}
-			else if (stack->stack_b->number == min)
-			{
-				pa(stack);
-				min++;
-				if (stack->stack_b->number != max - count && stack->stack_b->number != min && (check_r_rr(*stack, max - count) == 'r' || check_r_rr(*stack, min) == 'r'))
-					rr(stack);
-				else
-					ra(stack, 'a');
-			}
-			else if (stack->size_b >= 3 && stack->stack_b->number == min + 1 && stack->stack_b->next->number == min && stack->stack_b->next->next->number == min + 2)
-			{
-				pa(stack);
-				pa(stack);
-				ra(stack, 'a');
-				ra(stack, 'a');
-				pa(stack);
-				ra(stack, 'a');
-			}
-			else if (stack->size_b == 4 \
-			&& ((stack->stack_b->number == max - 1 && stack->stack_b->next->number == max && stack->stack_b->next->next->number == min + 1 && stack->stack_b->next->next->next->number == min) \
-			|| (stack->stack_b->number == min + 1 && stack->stack_b->next->number == min && stack->stack_b->next->next->number == max - 1 && stack->stack_b->next->next->next->number == max)))
-				sb(stack, 'b');
-			else if (stack->size_b == 4 \
-			&& ((stack->stack_b->number == max - 1 && stack->stack_b->next->number == min && stack->stack_b->next->next->number == min + 1 && stack->stack_b->next->next->next->number == max) \
-			|| (stack->stack_b->number == min + 1 && stack->stack_b->next->number == max && stack->stack_b->next->next->number == max - 1 && stack->stack_b->next->next->next->number == min)))
-				rrb(stack, 'b');
-			else if (check_r_rr(*stack, max - count) == 'r' || check_r_rr(*stack, min) == 'r')
-				rb(stack, 'b');
-			else
-				rrb(stack, 'b');
-		}
-		i = -1;
-		while (++i < count)
+		i = sub_sort_terminal(stack, max, min, 0);
+		while (i-- > 0)
 			ra(stack, 'a');
 		return ;
 	}

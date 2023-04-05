@@ -17,7 +17,8 @@ SRCS	= 	arg_2_check.c\
 			stack_rr.c\
 			util.c\
 			sub_sort.c\
-			sort_util.c
+			sort_util.c\
+			sub_sort_terminal.c
 OBJS	= $(SRCS:.c=.o)
 CC		= gcc
 CFLAGS	= -Wall -Wextra -Werror
