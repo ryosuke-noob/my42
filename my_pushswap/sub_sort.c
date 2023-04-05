@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 12:42:20 by nutar             #+#    #+#             */
-/*   Updated: 2023/04/05 16:03:09 by nutar            ###   ########.fr       */
+/*   Updated: 2023/04/05 16:31:06 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,22 @@ static int	count_min(t_stack *stack, int size, int min, int count)
 	return (count);
 }
 
+void	top_sort_min(t_stack *stack, int *min, int mid, int *i)
+{
+	t_list	*tmp;
+
+	pa(stack);
+	(*min)++;
+	tmp = stack->stack_b;
+	if (tmp != NULL && tmp->number != *min && tmp->number < mid)
+	{
+		rr(stack);
+		(*i)++;
+	}
+	else
+		ra(stack, 'a');
+}
+
 void	top_sort(t_stack *stack, int *size, int *max, int *min)
 {
 	int	i;
@@ -71,17 +87,7 @@ void	top_sort(t_stack *stack, int *size, int *max, int *min)
 		if (i < *size - 1 && judge_2_1(stack->stack_b, *min))
 			sb(stack, 'b');
 		if (stack->stack_b->number == *min)
-		{
-			pa(stack);
-			(*min)++;
-			if (stack->stack_b != NULL && stack->stack_b->number !=*min && (stack->stack_b->number < (*size - count) / 2 + tmp_min))
-			{
-				rr(stack);
-				i++;
-			}
-			else
-				ra(stack, 'a');
-		}
+			top_sort_min(stack, min, (*size - count) / 2 + tmp_min, &i);
 		else if (stack->stack_b->number >= (*size - count) / 2 + tmp_min)
 			pa(stack);
 		else

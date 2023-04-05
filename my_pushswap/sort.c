@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 21:33:23 by nutar             #+#    #+#             */
-/*   Updated: 2023/04/05 16:07:51 by nutar            ###   ########.fr       */
+/*   Updated: 2023/04/05 16:17:03 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,10 +85,10 @@ int	count_last_max(t_stack *stack, int size, int max)
 	return (count);
 }
 
-static void	a_sort(t_stack *stack, int size)
+static void	sort_over_6(t_stack *stack, int size)
 {
 	int	i;
-	int	count;
+	int	min;
 	int	cnt_max;
 
 	cnt_max = count_last_max(stack, size, size / 2);
@@ -103,32 +103,29 @@ static void	a_sort(t_stack *stack, int size)
 	sub_sort(stack, size / 2 - cnt_max, size / 2 - cnt_max, 1);
 	while (cnt_max-- > 0)
 		ra(stack, 'a');
-	// printf("\n[size: %d, max: %d, min: %d]]", size, cnt_max, 1);
-	// check_stack(stack);
-	// count = count_min(stack, size - size / 2, size / 2 + 1, 'a');
-	count = size / 2 + 1;
+	min = size / 2 + 1;
 	i = -1;
 	while (++i < size - size / 2)
 	{
-		if (stack->size_a > 2 && judge_3_1(stack->stack_a, count))
+		if (stack->size_a > 2 && judge_3_1(stack->stack_a, min))
 			sa(stack, 'a');
-		if (stack->size_a > 1 && judge_2_1(stack->stack_a, count))
+		if (stack->size_a > 1 && judge_2_1(stack->stack_a, min))
 			sa(stack, 'a');
-		if (stack->stack_a->number == count)
+		if (stack->stack_a->number == min)
 		{
 			ra(stack, 'a');
-			count++;
+			min++;
 		}
 		else
 			pb(stack);
 	}
-	sub_sort(stack, size - count + 1, size, count);
+	sub_sort(stack, size - min + 1, size, min);
 }
 
 void	sort(t_stack *stack)
 {
 	if (stack->size_a > 6)
-		a_sort(stack, stack->size_a);
+		sort_over_6(stack, stack->size_a);
 	else if (stack->size_a > 3)
 		sort_under_6(stack);
 	else
