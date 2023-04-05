@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 18:44:56 by nutar             #+#    #+#             */
-/*   Updated: 2023/04/03 19:45:52 by nutar            ###   ########.fr       */
+/*   Updated: 2023/04/06 00:23:53 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,22 @@ static t_integers	arg_check(int argc, char **argv)
 	else
 		integers = arg_check_all(argc, argv);
 	return (integers);
+}
+
+static void	integers_check(t_integers integers)
+{
+	int	i;
+
+	i = -1;
+	while (++i < integers.argc - 1)
+		if (integers.array[i] != integers.array[i + 1] - 1)
+			break ;
+	if (i == integers.argc - 1)
+	{
+		if (integers.array != NULL)
+			free(integers.array);
+		exit(0);
+	}
 }
 
 void	check_stack(t_stack *stack)
@@ -53,6 +69,7 @@ int	main(int argc, char **argv)
 	t_stack		stack;
 
 	integers = arg_check(argc, argv);
+	integers_check(integers);
 	stack = create_stack(integers);
 	sort(&stack);
 	my_lstclear(&stack.stack_a);

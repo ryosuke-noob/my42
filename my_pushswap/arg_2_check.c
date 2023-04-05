@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 17:30:39 by nutar             #+#    #+#             */
-/*   Updated: 2023/03/29 21:03:41 by nutar            ###   ########.fr       */
+/*   Updated: 2023/04/06 00:09:12 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	error_func_2(int *array, int argc, char **argv)
 }
 
 //check whether argv is num
-//allow first letter is + or - or space
+//allow first letter is + or -
 //check length of strings
 static void	check_all_digits_2(int argc, char **argv)
 {
@@ -66,7 +66,7 @@ static int	*check_int_2(int argc, char **argv)
 	return (array);
 }
 
-//check dupulicate and return middle value of integers
+//check dupulicate
 static void	check_duplicate_digits(t_integers *integers)
 {
 	int	i;
