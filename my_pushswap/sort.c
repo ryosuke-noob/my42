@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 21:33:23 by nutar             #+#    #+#             */
-/*   Updated: 2023/04/05 16:17:03 by nutar            ###   ########.fr       */
+/*   Updated: 2023/04/05 17:05:42 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,25 +64,33 @@ static void	sort_under_6(t_stack *stack)
 		pa(stack);
 }
 
-int	count_last_max(t_stack *stack, int size, int max)
+static void	bottom_sort_over_6(t_stack *stack, int *min)
 {
-	int		i;
-	int		count;
 	t_list	*tmp;
 
-	tmp = stack->stack_a;
-	i = -1;
-	count = 0;
-	while (++i < size)
+	if (stack->size_a > 2 && judge_3_1(stack->stack_a, *min))
 	{
-		if (tmp->number == max - size + i + 1)
-			count++;
+		tmp = stack->stack_b;
+		if (stack->size_b > 1 && tmp->number > tmp->next->number)
+			ss(stack);
 		else
-			count *= 0;
-		if (tmp->next != NULL)
-			tmp = tmp->next;
+			sa(stack, 'a');
 	}
-	return (count);
+	if (stack->size_a > 1 && judge_2_1(stack->stack_a, *min))
+	{
+		tmp = stack->stack_b;
+		if (stack->size_b > 1 && tmp->number > tmp->next->number)
+			ss(stack);
+		else
+			sa(stack, 'a');
+	}
+	if (stack->stack_a->number == *min)
+	{
+		ra(stack, 'a');
+		(*min)++;
+	}
+	else
+		pb(stack);
 }
 
 static void	sort_over_6(t_stack *stack, int size)
@@ -106,19 +114,7 @@ static void	sort_over_6(t_stack *stack, int size)
 	min = size / 2 + 1;
 	i = -1;
 	while (++i < size - size / 2)
-	{
-		if (stack->size_a > 2 && judge_3_1(stack->stack_a, min))
-			sa(stack, 'a');
-		if (stack->size_a > 1 && judge_2_1(stack->stack_a, min))
-			sa(stack, 'a');
-		if (stack->stack_a->number == min)
-		{
-			ra(stack, 'a');
-			min++;
-		}
-		else
-			pb(stack);
-	}
+		bottom_sort_over_6(stack, &min);
 	sub_sort(stack, size - min + 1, size, min);
 }
 

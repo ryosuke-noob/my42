@@ -6,56 +6,13 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 12:42:20 by nutar             #+#    #+#             */
-/*   Updated: 2023/04/05 16:31:06 by nutar            ###   ########.fr       */
+/*   Updated: 2023/04/05 17:22:06 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	judge_2_1(t_list *tmp, int min)
-{
-	if (tmp->number == min + 1 && tmp->next->number == min)
-		return (1);
-	return (0);
-}
-
-int	judge_3_1(t_list *tmp, int min)
-{
-	if (tmp->number == min + 1 && tmp->next->next->number == min)
-		return (1);
-	return (0);
-}
-
-//count added because of line restrict
-static int	count_min(t_stack *stack, int size, int min, int count)
-{
-	int		i;
-	t_list	*tmp;
-
-	tmp = stack->stack_b;
-	i = -1;
-	while (++i < size)
-	{
-		if (tmp->number == min + count)
-			count++;
-		else if (i < size - 1 && judge_2_1(tmp, min + count))
-		{
-			count += 2;
-			tmp = tmp->next;
-			i++;
-		}
-		else if (i < size - 2 && judge_3_1(tmp, min + count))
-		{
-			count += 2;
-			tmp = tmp->next->next;
-			i += 2;
-		}
-		tmp = tmp->next;
-	}
-	return (count);
-}
-
-void	top_sort_min(t_stack *stack, int *min, int mid, int *i)
+static void	top_sort_min(t_stack *stack, int *min, int mid, int *i)
 {
 	t_list	*tmp;
 
@@ -71,7 +28,7 @@ void	top_sort_min(t_stack *stack, int *min, int mid, int *i)
 		ra(stack, 'a');
 }
 
-void	top_sort(t_stack *stack, int *size, int *max, int *min)
+static void	top_sort(t_stack *stack, int *size, int *max, int *min)
 {
 	int	i;
 	int	tmp_min;
@@ -98,7 +55,7 @@ void	top_sort(t_stack *stack, int *size, int *max, int *min)
 	*min = tmp_min + *size / 2;
 }
 
-void	bottom_sort(t_stack *stack, int *size, int *max, int *min)
+static void	bottom_sort(t_stack *stack, int *size, int *max, int *min)
 {
 	int	i;
 	int	cnt_max;

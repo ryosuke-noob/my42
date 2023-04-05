@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 17:27:58 by nutar             #+#    #+#             */
-/*   Updated: 2023/04/05 16:07:15 by nutar            ###   ########.fr       */
+/*   Updated: 2023/04/05 17:23:27 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,9 @@ int			judge_3_1(t_list *tmp, int min);
 
 //sub_sort
 void		sub_sort(t_stack *stack, int size, int max, int min);
-void		top_sort(t_stack *stack, int *size, int *max, int *min);
-void		bottom_sort(t_stack *stack, int *size, int *max, int *min);
+// void		top_sort(t_stack *stack, int *size, int *max, int *min);
+// void		bottom_sort(t_stack *stack, int *size, int *max, int *min);
 int			count_last_max(t_stack *stack, int size, int max);
+int			count_min(t_stack *stack, int size, int min, int count);
 
 #endif
