@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 21:33:23 by nutar             #+#    #+#             */
-/*   Updated: 2023/04/03 22:46:30 by nutar            ###   ########.fr       */
+/*   Updated: 2023/04/05 12:54:32 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,14 @@ int	count_min(t_stack *stack, int size, int min, int flag)
 			min += 2;
 			tmp = tmp->next;
 			i++;
+		}
+		else if (i < size - 2 && tmp->number == min + 1 && tmp->next->next->number == min)
+		{
+			count += 2;
+			min += 2;
+			tmp = tmp->next;
+			tmp = tmp->next;
+			i += 2;
 		}
 		tmp = tmp->next;
 	}
@@ -174,6 +182,8 @@ static void	b_sort(t_stack *stack, int size, int max, int min)
 	tmp_min = min + count;
 	while (++i < size)
 	{
+		if (i < size - 2 && stack->stack_b->number == min + 1 && stack->stack_b->next->next->number == min)
+			sb(stack, 'b');
 		if (i < size - 1 && stack->stack_b->number == min + 1 && stack->stack_b->next->number == min)
 			sb(stack, 'b');
 		if (stack->stack_b->number == min)
