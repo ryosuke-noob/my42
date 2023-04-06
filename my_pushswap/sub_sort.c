@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 12:42:20 by nutar             #+#    #+#             */
-/*   Updated: 2023/04/05 18:35:34 by nutar            ###   ########.fr       */
+/*   Updated: 2023/04/06 11:15:28 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ static void	bottom_sort(t_stack *stack, int *size, int *max, int *min)
 	cnt_max = count_last_max(stack, *size, *max);
 	while (++i < *size - cnt_max)
 	{
+		if (i < *size - cnt_max - 2 && judge_3_1(stack->stack_a, *min))
+			sa(stack, 'a');
 		if (i < *size - cnt_max - 1 && judge_2_1(stack->stack_a, *min))
 			sa(stack, 'a');
 		if (stack->stack_a->number == *min)

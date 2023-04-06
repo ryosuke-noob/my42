@@ -6,11 +6,38 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 21:33:23 by nutar             #+#    #+#             */
-/*   Updated: 2023/04/05 17:05:42 by nutar            ###   ########.fr       */
+/*   Updated: 2023/04/06 09:20:53 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+static void	bottom_sort_over_6(t_stack *stack, int *size, int *max, int *min)
+{
+	int		i;
+	int		cnt_max;
+
+	i = -1;
+	cnt_max = count_last_max(stack, *size, *max);
+	while (++i < *size - cnt_max)
+	{
+
+		if (i < *size - cnt_max - 2 && judge_3_1(stack->stack_a, *min))
+			sa(stack, 'a');
+		if (i < *size - cnt_max - 1 && judge_2_1(stack->stack_a, *min))
+			sa(stack, 'a');
+		if (stack->stack_a->number == *min)
+		{
+			ra(stack, 'a');
+			(*min)++;
+		}
+		else
+			pb(stack);
+	}
+	sub_sort(stack, stack->size_b, *max - cnt_max, *min);
+	while (cnt_max-- > 0)
+		ra(stack, 'a');
+}
 
 static void	asc_sort(t_stack *stack, int flag)
 {
@@ -64,34 +91,34 @@ static void	sort_under_6(t_stack *stack)
 		pa(stack);
 }
 
-static void	bottom_sort_over_6(t_stack *stack, int *min)
-{
-	t_list	*tmp;
+// static void	bottom_sort_over_6(t_stack *stack, int *min)
+// {
+// 	t_list	*tmp;
 
-	if (stack->size_a > 2 && judge_3_1(stack->stack_a, *min))
-	{
-		tmp = stack->stack_b;
-		if (stack->size_b > 1 && tmp->number > tmp->next->number)
-			ss(stack);
-		else
-			sa(stack, 'a');
-	}
-	if (stack->size_a > 1 && judge_2_1(stack->stack_a, *min))
-	{
-		tmp = stack->stack_b;
-		if (stack->size_b > 1 && tmp->number > tmp->next->number)
-			ss(stack);
-		else
-			sa(stack, 'a');
-	}
-	if (stack->stack_a->number == *min)
-	{
-		ra(stack, 'a');
-		(*min)++;
-	}
-	else
-		pb(stack);
-}
+// 	if (stack->size_a > 2 && judge_3_1(stack->stack_a, *min))
+// 	{
+// 		tmp = stack->stack_b;
+// 		if (stack->size_b > 1 && tmp->number > tmp->next->number)
+// 			ss(stack);
+// 		else
+// 			sa(stack, 'a');
+// 	}
+// 	if (stack->size_a > 1 && judge_2_1(stack->stack_a, *min))
+// 	{
+// 		tmp = stack->stack_b;
+// 		if (stack->size_b > 1 && tmp->number > tmp->next->number)
+// 			ss(stack);
+// 		else
+// 			sa(stack, 'a');
+// 	}
+// 	if (stack->stack_a->number == *min)
+// 	{
+// 		ra(stack, 'a');
+// 		(*min)++;
+// 	}
+// 	else
+// 		pb(stack);
+// }
 
 static void	sort_over_6(t_stack *stack, int size)
 {
@@ -112,10 +139,9 @@ static void	sort_over_6(t_stack *stack, int size)
 	while (cnt_max-- > 0)
 		ra(stack, 'a');
 	min = size / 2 + 1;
-	i = -1;
-	while (++i < size - size / 2)
-		bottom_sort_over_6(stack, &min);
-	sub_sort(stack, size - min + 1, size, min);
+	cnt_max = size;
+	size -= min - 1;
+	bottom_sort_over_6(stack, &size, &cnt_max, &min);
 }
 
 void	sort(t_stack *stack)
