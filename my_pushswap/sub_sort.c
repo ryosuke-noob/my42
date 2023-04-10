@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 12:42:20 by nutar             #+#    #+#             */
-/*   Updated: 2023/04/10 10:58:53 by nutar            ###   ########.fr       */
+/*   Updated: 2023/04/10 17:39:44 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ static void	top_sort(t_stack *stack, int *size, int *min)
 	*min = tmp_min + *size / 2;
 }
 
-static void	bottom_sort(t_stack *stack, int *size, int *max, int *min)
+void	bottom_sort(t_stack *stack, int *size, int *max, int *min)
 {
 	int	i;
 	int	cnt_max;
@@ -127,7 +127,16 @@ static void	bottom_sort(t_stack *stack, int *size, int *max, int *min)
 		{
 			pb(stack);
 			if (stack->stack_b->number < (*size - cnt_max - cnt_min) / 2 + tmp_min)
-				rb(stack, 'b');
+			{
+				if (stack->stack_a->number == *min)
+				{
+					rr(stack);
+					(*min)++;
+					i++;
+				}
+				else
+					rb(stack, 'b');
+			}
 		}
 	}
 	sub_sort(stack, stack->size_b, *max - cnt_max, *min);

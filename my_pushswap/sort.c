@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 21:33:23 by nutar             #+#    #+#             */
-/*   Updated: 2023/04/10 11:08:24 by nutar            ###   ########.fr       */
+/*   Updated: 2023/04/10 17:34:09 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,35 +15,35 @@
 static void	bottom_sort_over_6(t_stack *stack, int *size, int *max, int *min)
 {
 	int	i;
-	int	cnt_max;
-	int	cnt_min;
-	int	tmp_min;
 
 	i = -1;
-	cnt_max = count_last_max(stack, *size, *max);
-	cnt_min = count_min_a(stack, *size - cnt_max, *min, 0);
-	tmp_min = *min + cnt_min;
-	while (++i < *size - cnt_max)
+	while (++i < *size)
 	{
-		if (i < *size - cnt_max - 2 && judge_3_1(stack->stack_a, *min))
-			sa(stack, 'a');
-		if (i < *size - cnt_max - 1 && judge_2_1(stack->stack_a, *min))
-			sa(stack, 'a');
-		if (stack->stack_a->number == *min)
-		{
+		if (stack->stack_a->number >= *size / 2 + *min)
 			ra(stack, 'a');
-			(*min)++;
-		}
 		else
 		{
 			pb(stack);
-			if (stack->stack_b->number < (*size - cnt_max - cnt_min) / 2 + tmp_min)
-				rb(stack, 'b');
+			if (stack->stack_b->number < *size / 4 + *min)
+			{
+				if (stack->stack_a->number >= *size / 2 + *min)
+				{
+					rr(stack);
+					i++;
+				}
+				else
+					rb(stack, 'b');
+			}
 		}
 	}
-	sub_sort(stack, stack->size_b, *max - cnt_max, *min);
-	while (cnt_max-- > 0)
-		ra(stack, 'a');
+	i = -1;
+	while (++i < *size / 2 + *size % 2)
+		rra(stack, 'a');
+	stack->flag = 0;
+	sub_sort(stack, *size / 2, *min + *size / 2 - 1, *min);
+	*min += *size / 2;
+	*size = *size / 2 + *size % 2;
+	bottom_sort(stack, size, max, min);
 }
 
 static void	asc_sort(t_stack *stack, int flag)
