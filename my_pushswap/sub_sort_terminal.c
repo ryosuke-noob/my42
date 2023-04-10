@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 17:30:05 by nutar             #+#    #+#             */
-/*   Updated: 2023/04/05 18:36:22 by nutar            ###   ########.fr       */
+/*   Updated: 2023/04/10 09:17:26 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,7 @@ int	sub_sort_terminal(t_stack *stack, int max, int min, int count)
 	while (stack->size_b)
 	{
 		tmp = stack->stack_b;
-		if (tmp->number == max - count)
-		{
-			pa(stack);
-			count++;
-		}
-		else if (tmp->number == min)
+		if (tmp->number == min)
 		{
 			pa(stack);
 			min++;
@@ -62,6 +57,11 @@ int	sub_sort_terminal(t_stack *stack, int max, int min, int count)
 				rr(stack);
 			else
 				ra(stack, 'a');
+		}
+		else if (tmp->number == max - count)
+		{
+			pa(stack);
+			count++;
 		}
 		else
 			else_case(stack, max, min, count);

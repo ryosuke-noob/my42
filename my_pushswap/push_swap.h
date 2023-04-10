@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 17:27:58 by nutar             #+#    #+#             */
-/*   Updated: 2023/04/05 18:35:22 by nutar            ###   ########.fr       */
+/*   Updated: 2023/04/10 10:55:53 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct s_stack
 	t_list	*stack_b;
 	int		size_a;
 	int		size_b;
+	int		flag;
 }	t_stack;
 
 //my_check
@@ -102,5 +103,6 @@ void		sub_sort(t_stack *stack, int size, int max, int min);
 int			count_last_max(t_stack *stack, int size, int max);
 int			count_min(t_stack *stack, int size, int min, int count);
 int			sub_sort_terminal(t_stack *stack, int max, int min, int count);
+int			count_min_a(t_stack *stack, int size, int min, int count);
 
 #endif
