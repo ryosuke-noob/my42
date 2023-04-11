@@ -18,7 +18,10 @@ SRCS	= 	arg_2_check.c\
 			util.c\
 			sub_sort.c\
 			sort_util.c\
-			sub_sort_terminal.c
+			sub_sort_terminal.c\
+			ft_printf.c\
+			ft_print_1.c\
+			ft_print_2.c
 OBJS	= $(SRCS:.c=.o)
 CC		= gcc
 CFLAGS	= -Wall -Wextra -Werror
