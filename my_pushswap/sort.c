@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 21:33:23 by nutar             #+#    #+#             */
-/*   Updated: 2023/04/10 17:34:09 by nutar            ###   ########.fr       */
+/*   Updated: 2023/04/10 18:12:03 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,7 @@ static void	bottom_sort_over_6(t_stack *stack, int *size, int *max, int *min)
 		if (stack->stack_a->number >= *size / 2 + *min)
 			ra(stack, 'a');
 		else
-		{
 			pb(stack);
-			if (stack->stack_b->number < *size / 4 + *min)
-			{
-				if (stack->stack_a->number >= *size / 2 + *min)
-				{
-					rr(stack);
-					i++;
-				}
-				else
-					rb(stack, 'b');
-			}
-		}
 	}
 	i = -1;
 	while (++i < *size / 2 + *size % 2)
@@ -138,11 +126,7 @@ static void	sort_over_6(t_stack *stack, int size)
 	while (++i < size - cnt_max)
 	{
 		if (stack->stack_a->number <= size / 2 - cnt_max)
-		{
 			pb(stack);
-			if (stack->stack_b->number <= (size / 2 - cnt_max) / 2)
-				rb(stack, 'b');
-		}
 		else
 			ra(stack, 'a');
 	}
