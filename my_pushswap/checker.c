@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 13:04:14 by nutar             #+#    #+#             */
-/*   Updated: 2023/04/12 18:14:21 by nutar            ###   ########.fr       */
+/*   Updated: 2023/04/12 18:20:21 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ static void	final_integers_check(t_stack stack)
 	if (stack.size_b > 0)
 	{
 		ft_printf("KO\n");
+		my_lstclear(&stack.stack_b);
 		return ;
 	}
 	tmp = stack.stack_a;
