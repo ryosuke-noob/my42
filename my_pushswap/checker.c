@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 13:04:14 by nutar             #+#    #+#             */
-/*   Updated: 2023/04/12 13:40:16 by nutar            ###   ########.fr       */
+/*   Updated: 2023/04/12 18:06:08 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,20 @@
 static t_integers	arg_check(int argc, char **argv)
 {
 	t_integers	integers;
+	int			i;
 
 	if (argc == 1)
 		exit(0);
 	if (argc == 2)
+	{
+		i = -1;
+		while (++i < (int)ft_strlen(argv[1]))
+			if (argv[1][i] != ' ')
+				break ;
+		if (i == (int)ft_strlen(argv[1]))
+			error_func(NULL);
 		integers = arg_2_check_all(argc, argv);
+	}
 	else
 		integers = arg_check_all(argc, argv);
 	return (integers);
@@ -65,16 +74,56 @@ static void	final_integers_check(t_stack stack)
 		ft_printf("KO\n");
 }
 
+void	ft_bzero(void *s, size_t size)
+{
+	size_t			i;
+	unsigned char	*tmp;
+
+	tmp = s;
+	i = 0;
+	while (i < size)
+	{
+		tmp[i++] = 0;
+	}
+	return ;
+}
+
+// void	check_stack(t_stack *stack)
+// {
+// 	t_list	*tmp;
+
+// 	printf("\nstack a: ");
+// 	tmp = stack->stack_a;
+// 	while (tmp)
+// 	{
+// 		printf("%d ", tmp->content);
+// 		tmp = tmp->next;
+// 	}
+// 	printf("[%d]\n", stack->size_a);
+// 	printf("stack b: ");
+// 	tmp = stack->stack_b;
+// 	while (tmp)
+// 	{
+// 		printf("%d ", tmp->content);
+// 		tmp = tmp->next;
+// 	}
+// 	printf("[%d]\n", stack->size_b);
+// }
+
 void	execute(t_stack *stack)
 {
 	char	*cmd;
 
 	cmd = get_next_line(0);
+	// printf("%s",cmd);
 	while (cmd != NULL)
 	{
 		judge_cmd(stack, cmd);
+		// check_stack(stack);
+		ft_bzero(cmd, sizeof(cmd));
 		free(cmd);
 		cmd = get_next_line(0);
+		// printf("%s",cmd);
 	}
 }
 
@@ -88,7 +137,9 @@ int	main(int argc, char **argv)
 	stack = create_stack(integers);
 	// sort(&stack);
 	//execute
+	// check_stack(&stack);
 	execute(&stack);
+	// check_stack(&stack);
 	final_integers_check(stack);
 	my_lstclear(&stack.stack_a);
 	return (0);

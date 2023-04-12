@@ -6,11 +6,22 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 20:13:27 by nutar             #+#    #+#             */
-/*   Updated: 2023/04/12 13:37:44 by nutar            ###   ########.fr       */
+/*   Updated: 2023/04/12 17:43:05 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap_bonus.h"
+
+static void	error_func_cmd(t_stack *stack, char *cmd)
+{
+	if (stack->stack_a != NULL)
+		my_lstclear(&stack->stack_a);
+	if (stack->stack_b != NULL)
+		my_lstclear(&stack->stack_b);
+	free(cmd);
+	write(1, "Error\n", 7);
+	exit(1);
+}
 
 static int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
@@ -32,29 +43,28 @@ static int	ft_strncmp(const char *s1, const char *s2, size_t n)
 
 void	judge_cmd(t_stack *stack, char *cmd)
 {
-	int	len;
-
-	len = ft_strlen(cmd);
-	if (ft_strncmp(cmd, "sa", len))
+	if (ft_strncmp(cmd, "sa\n", ft_strlen(cmd)) == 0)
 		sa(stack);
-	if (ft_strncmp(cmd, "sb", len))
+	else if (ft_strncmp(cmd, "sb\n", ft_strlen(cmd)) == 0)
 		sb(stack);
-	if (ft_strncmp(cmd, "ss", len))
+	else if (ft_strncmp(cmd, "ss\n", ft_strlen(cmd)) == 0)
 		ss(stack);
-	if (ft_strncmp(cmd, "ra", len))
+	else if (ft_strncmp(cmd, "ra\n", ft_strlen(cmd)) == 0)
 		ra(stack);
-	if (ft_strncmp(cmd, "rb", len))
+	else if (ft_strncmp(cmd, "rb\n", ft_strlen(cmd)) == 0)
 		rb(stack);
-	if (ft_strncmp(cmd, "rr", len))
+	else if (ft_strncmp(cmd, "rr\n", ft_strlen(cmd)) == 0)
 		rr(stack);
-	if (ft_strncmp(cmd, "rra", len))
+	else if (ft_strncmp(cmd, "rra\n", ft_strlen(cmd)) == 0)
 		rra(stack);
-	if (ft_strncmp(cmd, "rrb", len))
+	else if (ft_strncmp(cmd, "rrb\n", ft_strlen(cmd)) == 0)
 		rrb(stack);
-	if (ft_strncmp(cmd, "rrr", len))
+	else if (ft_strncmp(cmd, "rrr\n", ft_strlen(cmd)) == 0)
 		rrr(stack);
-	if (ft_strncmp(cmd, "pa", len))
+	else if (ft_strncmp(cmd, "pa\n", ft_strlen(cmd)) == 0)
 		pa(stack);
-	if (ft_strncmp(cmd, "pb", len))
+	else if (ft_strncmp(cmd, "pb\n", ft_strlen(cmd)) == 0)
 		pb(stack);
+	else
+		error_func_cmd(stack, cmd);
 }
