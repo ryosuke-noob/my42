@@ -61,39 +61,3 @@ int	ft_printf(const char *format, ...)
 	va_end(ap);
 	return (count);
 }
-
-// int	main(void)
-// {
-// 	int				d = 0;//INT_MIN - 1, INT_MIN, 0, INT_MAX, INT_MAX + 1
-// 	int				i = 0;//INT_MIN - 1, INT_MIN, 0, INT_MAX, INT_MAX + 1
-// 	char			s[] = "abcde";//NULL, isprint, !isprint 
-// 	char			c = 'c';//isprint, !isprint
-// 	int				p = -1;//NUll, !NULL, -1
-// 	int				x = -16;//INT_MIN - 1, INT_MIN, 0, INT_MAX, INT_MAX + 1, 16, -16, 9223372036854775807LL
-// 	unsigned int	u = 10;//UINT_MAX, UINT_MAX + 1, 0, -1, 10
-
-// 	ft_printf(" : %i]\n",ft_printf("[%d",d));
-// 	ft_printf(" : %i]\n",ft_printf("[%i",i));
-// 	ft_printf(" : %i]\n",ft_printf("[%s",s));
-// 	ft_printf(" : %i]\n",ft_printf("[%s",(char *)0));
-// 	ft_printf(" : %i]\n",ft_printf("[%c",c));
-// 	ft_printf(" : %i]\n",ft_printf("[%p",&p));
-// 	ft_printf(" : %i]\n",ft_printf("[%p",NULL));
-// 	ft_printf(" : %i]\n",ft_printf("[%x",x));
-// 	ft_printf(" : %i]\n",ft_printf("[%X",x));
-// 	ft_printf(" : %i]\n",ft_printf("[%u",u));
-// 	// // ft_printf("%d|%i|%s|%c|%p|%x|%X|%u\n",d,i,s,c,&p,x,x,u);
-// 	printf("\n");
-// 	// printf("%d|%i|%s|%c|%p|%x|%X|%u\n",d,i,s,c,&p,x,x,u);
-// 	printf(" : %i]\n",printf("[%d",d));
-// 	printf(" : %i]\n",printf("[%i",i));
-// 	printf(" : %i]\n",printf("[%s",s));
-// 	printf(" : %i]\n",printf("[%s",(char *)0));
-// 	printf(" : %i]\n",printf("[%c",c));
-// 	printf(" : %i]\n",printf("[%p",&p));
-// 	printf(" : %i]\n",printf("[%p",NULL));
-// 	printf(" : %i]\n",printf("[%x",x));
-// 	printf(" : %i]\n",printf("[%X",x));
-// 	printf(" : %i]\n",printf("[%u",u));
-// 	return (0);
-// }
