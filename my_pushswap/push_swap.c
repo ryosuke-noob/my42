@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 18:44:56 by nutar             #+#    #+#             */
-/*   Updated: 2023/04/14 21:58:02 by nutar            ###   ########.fr       */
+/*   Updated: 2023/04/14 22:19:45 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,20 +51,6 @@ static void	integers_check(t_integers integers)
 	}
 }
 
-// int	main(int argc, char **argv)
-// {
-// 	t_integers	integers;
-// 	t_stack		stack;
-
-// 	integers = arg_check(argc, argv);
-// 	integers_check(integers);
-// 	stack = create_stack(integers);
-// 	free(integers.array);
-// 	sort(&stack);
-// 	my_lstclear(&stack.stack_a);
-// 	return (0);
-// }
-
 int	main(int argc, char **argv)
 {
 	t_integers	integers;
@@ -76,8 +62,22 @@ int	main(int argc, char **argv)
 	free(integers.array);
 	sort(&stack);
 	my_lstclear(&stack.stack_a);
-
-	ft_printf("\n-------------------------\n\n");
-	// system("leaks -q a.out");	
 	return (0);
 }
+
+// int	main(int argc, char **argv)
+// {
+// 	t_integers	integers;
+// 	t_stack		stack;
+
+// 	integers = arg_check(argc, argv);
+// 	integers_check(integers);
+// 	stack = create_stack(integers);
+// 	free(integers.array);
+// 	sort(&stack);
+// 	my_lstclear(&stack.stack_a);
+
+// 	ft_printf("\n-------------------------\n\n");
+// 	// system("leaks -q a.out");	
+// 	return (0);
+// }
