@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 13:04:14 by nutar             #+#    #+#             */
-/*   Updated: 2023/04/12 18:20:21 by nutar            ###   ########.fr       */
+/*   Updated: 2023/04/14 21:44:09 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ int	main(int argc, char **argv)
 
 	integers = arg_check(argc, argv);
 	stack = create_stack(integers);
+	free(integers.array);
 	execute(&stack);
 	final_integers_check(stack);
 	my_lstclear(&stack.stack_a);

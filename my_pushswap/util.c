@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 17:34:20 by nutar             #+#    #+#             */
-/*   Updated: 2023/04/05 17:50:19 by nutar            ###   ########.fr       */
+/*   Updated: 2023/04/14 21:23:07 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	error_func(int	*array)
 }
 
 //editted atoi
-int	ft_atoi_edit(const char *str, int *array)
+int	ft_atoi_edit(const char *str, int *array, int argc, char **argv)
 {
 	long	i;
 	long	minus;
@@ -37,7 +37,7 @@ int	ft_atoi_edit(const char *str, int *array)
 	while (str[i] >= '0' && str[i] <= '9')
 		ret = ret * 10 + str[i++] - '0';
 	if (ret * minus < (long)INT32_MIN || ret * minus > (long)INT32_MAX)
-		error_func(array);
+		error_func_2(array, argc, argv);
 	return ((int)ret * minus);
 }
 

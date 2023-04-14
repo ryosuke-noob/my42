@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 18:44:56 by nutar             #+#    #+#             */
-/*   Updated: 2023/04/12 18:06:14 by nutar            ###   ########.fr       */
+/*   Updated: 2023/04/14 21:58:02 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ static t_integers	arg_check(int argc, char **argv)
 	return (integers);
 }
 
+//when integers are sorted, exit(0)
 static void	integers_check(t_integers integers)
 {
 	int	i;
@@ -50,6 +51,20 @@ static void	integers_check(t_integers integers)
 	}
 }
 
+// int	main(int argc, char **argv)
+// {
+// 	t_integers	integers;
+// 	t_stack		stack;
+
+// 	integers = arg_check(argc, argv);
+// 	integers_check(integers);
+// 	stack = create_stack(integers);
+// 	free(integers.array);
+// 	sort(&stack);
+// 	my_lstclear(&stack.stack_a);
+// 	return (0);
+// }
+
 int	main(int argc, char **argv)
 {
 	t_integers	integers;
@@ -58,7 +73,11 @@ int	main(int argc, char **argv)
 	integers = arg_check(argc, argv);
 	integers_check(integers);
 	stack = create_stack(integers);
+	free(integers.array);
 	sort(&stack);
 	my_lstclear(&stack.stack_a);
+
+	ft_printf("\n-------------------------\n\n");
+	// system("leaks -q a.out");	
 	return (0);
 }

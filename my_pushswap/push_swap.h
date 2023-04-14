@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 17:27:58 by nutar             #+#    #+#             */
-/*   Updated: 2023/04/11 12:29:26 by nutar            ###   ########.fr       */
+/*   Updated: 2023/04/14 21:14:50 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,10 @@ typedef struct s_stack
 
 t_integers	arg_check_all(int argc, char **argv);
 t_integers	arg_2_check_all(int argc, char **argv);
+void		error_func_2(int *array, int argc, char **argv);
 void		error_func(int	*array);
 int			ft_isdigit(int c);
-int			ft_atoi_edit(const char *str, int *array);
+int			ft_atoi_edit(const char *str, int *array, int argc, char **argv);
 int			check_r_rr(t_stack stack, int max, int min);
 char		*ft_strtrim(char const *s1, char const *set);
 char		**ft_split(char const *s, char c);

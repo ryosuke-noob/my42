@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 17:30:39 by nutar             #+#    #+#             */
-/*   Updated: 2023/03/24 21:40:15 by nutar            ###   ########.fr       */
+/*   Updated: 2023/04/14 21:28:50 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static int	*check_int(int argc, char **argv)
 		error_func(NULL);
 	i = -1;
 	while (++i < argc - 1)
-		array[i] = ft_atoi_edit(argv[i + 1], array);
+		array[i] = ft_atoi_edit(argv[i + 1], array, 0, NULL);
 	return (array);
 }
 

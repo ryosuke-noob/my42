@@ -6,13 +6,13 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 17:30:39 by nutar             #+#    #+#             */
-/*   Updated: 2023/04/06 00:09:12 by nutar            ###   ########.fr       */
+/*   Updated: 2023/04/14 21:34:33 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	error_func_2(int *array, int argc, char **argv)
+void	error_func_2(int *array, int argc, char **argv)
 {
 	int	i;
 
@@ -62,7 +62,7 @@ static int	*check_int_2(int argc, char **argv)
 		error_func_2(NULL, argc, argv);
 	i = -1;
 	while (++i < argc)
-		array[i] = ft_atoi_edit(argv[i], array);
+		array[i] = ft_atoi_edit(argv[i], array, argc, argv);
 	return (array);
 }
 

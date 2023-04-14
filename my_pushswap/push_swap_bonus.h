@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 17:27:58 by nutar             #+#    #+#             */
-/*   Updated: 2023/04/12 14:51:41 by nutar            ###   ########.fr       */
+/*   Updated: 2023/04/14 21:32:02 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 #  define TRUE 1
 # endif
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 100
+#  define BUFFER_SIZE 1
 # endif
 
 typedef struct s_integers
@@ -53,8 +53,9 @@ typedef struct s_stack
 t_integers	arg_check_all(int argc, char **argv);
 t_integers	arg_2_check_all(int argc, char **argv);
 void		error_func(int	*array);
+void		error_func_2(int *array, int argc, char **argv);
 int			ft_isdigit(int c);
-int			ft_atoi_edit(const char *str, int *array);
+int			ft_atoi_edit(const char *str, int *array, int argc, char **argv);
 int			check_r_rr(t_stack stack, int max, int min);
 char		*ft_strtrim(char const *s1, char const *set);
 char		**ft_split(char const *s, char c);
