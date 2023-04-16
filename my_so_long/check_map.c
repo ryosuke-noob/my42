@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 22:12:16 by nutar             #+#    #+#             */
-/*   Updated: 2023/04/14 16:11:14 by nutar            ###   ########.fr       */
+/*   Updated: 2023/04/16 11:38:05 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 #define WALL 2
 #define COLLECTIVE 3
 #define GOAL 4
+#define YES 1
+#define NO 0
 
 typedef struct s_map
 {
@@ -32,6 +34,7 @@ typedef struct s_map
 	int		start_j;
 	int		cp_map[MAX_HEIGHT][MAX_WIDTH];
 	int		cnt_collect;
+	int		have_newline;
 }	t_map;
 
 void	clear_map(t_map *map)
@@ -86,12 +89,15 @@ void	get_map(int fd, t_map *map)
 	map->cnt_e = 0;
 	map->cnt_collect = 0;
 	map->fd = fd;
+	map->have_newline = YES;
 	i = -1;
 	while (++i < MAX_HEIGHT)
 	{
 		map->map[i] = get_next_line(fd);
 		if (map->map[i] == NULL)
 			break ;
+		if (map->map[i][ft_strlen(map->map[i]) - 1] != '\n')
+			map->have_newline = NO;
 	}
 	map->height = i;
 	map->width = (int)ft_strlen(map->map[0]) - 1;
@@ -106,8 +112,12 @@ void	check_map_width(t_map *map)
 
 	i = -1;
 	while (++i < map->height)
+	{
+		if (map->have_newline == NO && i == map->height - 1)
+			continue ;
 		if ((int)ft_strlen(map->map[i]) != map->width + 1)
 			error_map(map);
+	}
 }
 
 //check map's char is proper
