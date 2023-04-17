@@ -6,12 +6,11 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 21:58:55 by nutar             #+#    #+#             */
-/*   Updated: 2023/04/17 22:10:48 by nutar            ###   ########.fr       */
+/*   Updated: 2023/04/17 23:57:02 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../../includes/so_long.h"
-
 
 //when point is collective, this func is called
 //increse cnt of collect, and clear checked status
