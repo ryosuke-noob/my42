@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:31:24 by nutar             #+#    #+#             */
-/*   Updated: 2023/04/17 15:46:34 by nutar            ###   ########.fr       */
+/*   Updated: 2023/04/17 16:30:04 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,24 +67,6 @@ typedef struct s_img
 	void	*collect;
 }	t_img;
 
-typedef struct s_data
-{
-	t_img	img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-	int		height;
-	int		width;
-}	t_data;
-
-
-typedef struct s_vars
-{
-	void	*mlx;
-	void	*win;
-}	t_vars;
-
 typedef struct s_map
 {
 	int		fd;
@@ -94,18 +76,26 @@ typedef struct s_map
 	int		cnt_p;
 	int		cnt_c;
 	int		cnt_e;
-	int		start_i;
-	int		start_j;
+	int		player_i;
+	int		player_j;
 	int		cp_map[MAX_HEIGHT][MAX_WIDTH];
 	int		cnt_collect;
 	int		have_newline;
 }	t_map;
 
+typedef struct s_data
+{
+	void	*mlx;
+	void	*win;
+	t_img	img;
+	t_map	map;
+}	t_data;
+
 //map
 void	check_map(int fd, t_map * map);
 char	*get_next_line(int fd);
 
-// void	map_to_win(t_vars vars, t_map *map);
-int		recieve_key(int	keycode, t_vars *vars);
+int		map_to_win(t_data *data);
+int		recieve_key(int	keycode, t_data *data);
 
 #endif

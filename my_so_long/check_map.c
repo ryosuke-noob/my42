@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 22:12:16 by nutar             #+#    #+#             */
-/*   Updated: 2023/04/17 13:38:25 by nutar            ###   ########.fr       */
+/*   Updated: 2023/04/17 15:58:06 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,8 +113,8 @@ void	check_map_char(t_map *map)
 			else if (map->map[i][j] == 'P')
 			{
 				map->cnt_p++;
-				map->start_i = i;
-				map->start_j = j;
+				map->player_i = i;
+				map->player_j = j;
 			}
 			else if (map->map[i][j] == 'E')
 				map->cnt_e++;
@@ -208,8 +208,8 @@ int	check_point(t_map *map, int i, int j)
 //UNCHECKED == 0
 void	check_map_playable(t_map *map)
 {
-	printf("start:[%d,%d]\n", map->start_i, map->start_j);
-	if (check_point(map, map->start_i, map->start_j) == FAILURE)
+	printf("player:[%d,%d]\n", map->player_i, map->player_j);
+	if (check_point(map, map->player_i, map->player_j) == FAILURE)
 		error_map(map);
 }
 
