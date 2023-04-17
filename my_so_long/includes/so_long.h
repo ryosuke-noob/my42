@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:31:24 by nutar             #+#    #+#             */
-/*   Updated: 2023/04/17 16:30:04 by nutar            ###   ########.fr       */
+/*   Updated: 2023/04/17 23:51:09 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,16 @@
 # include <stdio.h>
 # include <limits.h>
 # include <fcntl.h>
-# include "minilibx-linux/mlx.h"
-# include "get_next_line.h"
+# include "../minilibx-linux/mlx.h"
+# include "./get_next_line.h"
 
+//general
 # define SUCCESS 0
 # define FAILURE 1
+# define YES 1
+# define NO 0
+
+//map
 # define MAX_HEIGHT 1080
 # define MAX_WIDTH 1920
 # define UNCHECKED 0
@@ -30,8 +35,6 @@
 # define OBJECTIVE 2
 # define COLLECTIVE 3
 # define GOAL 4
-# define YES 1
-# define NO 0
 
 //images
 # define IMG_SIZE 16
@@ -40,10 +43,6 @@
 # define EXIT "./images/Floor_ladder.xpm"
 # define COLLECT "./images/monster_bies.xpm"
 # define PLAYER "./images/hero_basic.xpm"
-
-//window
-// # define WIN_W 640
-// # define WIN_H 480
 
 //keycode
 # define ESC 65307
@@ -72,12 +71,12 @@ typedef struct s_map
 	int		fd;
 	int		height;
 	int		width;
-	char	*map[MAX_HEIGHT];
 	int		cnt_p;
 	int		cnt_c;
 	int		cnt_e;
 	int		player_i;
 	int		player_j;
+	char	*map[MAX_HEIGHT];
 	int		cp_map[MAX_HEIGHT][MAX_WIDTH];
 	int		cnt_collect;
 	int		have_newline;
@@ -89,13 +88,31 @@ typedef struct s_data
 	void	*win;
 	t_img	img;
 	t_map	map;
+	int		cnt_move;
 }	t_data;
 
 //map
-void	check_map(int fd, t_map * map);
+void	init_map(t_data *data, const char *pass);
+void	file_error(void);
+void	map_error(t_map *map);
+void	check_map_playable(t_map *map);
+void	check_map(t_map *map);
 char	*get_next_line(int fd);
 
-int		map_to_win(t_data *data);
-int		recieve_key(int	keycode, t_data *data);
+//images
+void	init_images(t_data *data);
+int		images_to_win(t_data *data);
+void	init_window(t_data *data);
+void	error_images(t_data *data);
+void	destroy_images(t_data *data);
+
+//event
+void	manage_window(t_data *data);
+int		close_window(t_data *data);
+int		recieve_key(int keycode, t_data *data);
+void	case_a(t_data *data);
+void	case_s(t_data *data);
+void	case_w(t_data *data);
+void	case_d(t_data *data);
 
 #endif

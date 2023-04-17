@@ -6,11 +6,11 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 23:18:42 by nutar             #+#    #+#             */
-/*   Updated: 2022/10/31 00:04:49 by nutar            ###   ########.fr       */
+/*   Updated: 2023/04/17 22:48:06 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "./../../includes/get_next_line.h"
 
 size_t	ft_strlen(const char *c)
 {

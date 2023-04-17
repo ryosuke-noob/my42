@@ -6,69 +6,28 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:30:06 by nutar             #+#    #+#             */
-/*   Updated: 2023/04/17 16:35:04 by nutar            ###   ########.fr       */
+/*   Updated: 2023/04/17 21:18:24 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minilibx-linux/mlx.h"
-#include "so_long.h"
+#include "./includes/so_long.h"
 
 void	init_images(t_data *data)
 {
 	data->img.floor = mlx_xpm_file_to_image(data->mlx, \
 				FLOOR, &data->img.width, &data->img.height);
-	// printf("floor: [%d, %d]", data->img.width, data->img.height);
 	data->img.wall = mlx_xpm_file_to_image(data->mlx, \
 				WALL, &data->img.width, &data->img.height);
-	// printf("wall: [%d, %d]", data->img.width, data->img.height);
 	data->img.player = mlx_xpm_file_to_image(data->mlx, \
 				PLAYER, &data->img.width, &data->img.height);
-	// printf("player: [%d, %d]", data->img.width, data->img.height);
 	data->img.collect = mlx_xpm_file_to_image(data->mlx, \
 				COLLECT, &data->img.width, &data->img.height);
-	// printf("collective: [%d, %d]", data->img.width, data->img.height);
 	data->img.exit = mlx_xpm_file_to_image(data->mlx, \
 				EXIT, &data->img.width, &data->img.height);
-	// printf("exit: [%d, %d]", data->img.width, data->img.height);
 }
 
-void	case_a(t_data *data)
-{
-	if (data->map.map[data->map.player_i][data->map.player_j - 1] == '0')
-	{
-		data->map.map[data->map.player_i][data->map.player_j--] = '0';
-		data->map.map[data->map.player_i][data->map.player_j] = 'P';
-	}
-}
-
-void	case_s(t_data *data)
-{
-	if (data->map.map[data->map.player_i + 1][data->map.player_j] == '0')
-	{
-		data->map.map[data->map.player_i++][data->map.player_j] = '0';
-		data->map.map[data->map.player_i][data->map.player_j] = 'P';
-	}
-}
-
-void	case_d(t_data *data)
-{
-	if (data->map.map[data->map.player_i][data->map.player_j + 1] == '0')
-	{
-		data->map.map[data->map.player_i][data->map.player_j++] = '0';
-		data->map.map[data->map.player_i][data->map.player_j] = 'P';
-	}
-}
-
-void	case_w(t_data *data)
-{
-	if (data->map.map[data->map.player_i - 1][data->map.player_j] == '0')
-	{
-		data->map.map[data->map.player_i--][data->map.player_j] = '0';
-		data->map.map[data->map.player_i][data->map.player_j] = 'P';
-	}
-}
-
-int	recieve_key(int	keycode, t_data *data)
+int	recieve_key(int keycode, t_data *data)
 {
 	if (keycode == ESC)
 	{
@@ -77,11 +36,11 @@ int	recieve_key(int	keycode, t_data *data)
 	}
 	if (keycode == A || keycode == LARROW)
 		case_a(data);
-	if (keycode == W || keycode == UARROW)
+	else if (keycode == W || keycode == UARROW)
 		case_w(data);
-	if (keycode == D || keycode == RARROW)
+	else if (keycode == D || keycode == RARROW)
 		case_d(data);
-	if (keycode == S || keycode == DARROW)
+	else if (keycode == S || keycode == DARROW)
 		case_s(data);
 	return (0);
 }
@@ -117,23 +76,48 @@ int	map_to_win(t_data *data)
 	return (0);
 }
 
+int	close_window(t_data *data)
+{
+	int	i;
+
+	mlx_destroy_image(data->mlx, data->img.collect);
+	mlx_destroy_image(data->mlx, data->img.exit);
+	mlx_destroy_image(data->mlx, data->img.player);
+	mlx_destroy_image(data->mlx, data->img.floor);
+	mlx_destroy_image(data->mlx, data->img.wall);
+	mlx_destroy_window(data->mlx, data->win);
+	mlx_destroy_display(data->mlx);
+	close(data->map.fd);
+	free(data->mlx);
+	free(data->win);
+	i = -1;
+	while (++i < data->map.height)
+		free(data->map.map[i]);
+	exit(SUCCESS);
+}
+
 int	main(int argc, char **argv)
 {
 	t_data	data;
-	int		fd;
 
 	if (argc != 2)
-		return (0);
-	fd = open(argv[1], O_RDONLY);
-	check_map(fd, &data.map);
+		return (FAILURE);
+	data.map.fd = open(argv[1], O_RDONLY);
+	check_map(data.map.fd, &data.map);
 	data.mlx = mlx_init();
 	data.win = mlx_new_window(data.mlx, IMG_SIZE * data.map.width, \
 						IMG_SIZE * data.map.height, "Hello world!");
+	data.cnt_move = 0;
 	init_images(&data);
-	// map_to_win(&vars, &map, &data);
 	mlx_loop_hook(data.mlx, map_to_win, &data);
 	mlx_hook(data.win, 2, 1L << 0, recieve_key, &data);
+	mlx_hook(data.win, 17, 1L << 5, close_window, &data);
 	mlx_loop(data.mlx);
-	close(fd);
+	close(data.map.fd);
 	return (0);
+}
+
+__attribute__((destructor))
+static void destructor(void){
+    system("leaks -q fixed");
 }

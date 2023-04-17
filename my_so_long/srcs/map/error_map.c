@@ -1,38 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   color.c                                            :+:      :+:    :+:   */
+/*   error_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/13 17:11:41 by nutar             #+#    #+#             */
-/*   Updated: 2023/04/13 17:12:57 by nutar            ###   ########.fr       */
+/*   Created: 2023/04/17 21:39:50 by nutar             #+#    #+#             */
+/*   Updated: 2023/04/17 22:10:20 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "./../../includes/so_long.h"
 
-int	create_trgb(int t, int r, int g, int b)
+void	file_error(void)
 {
-	return (t << 24 | r << 16 | g << 8 | b);
+	perror("cannot open file...\nError\n");
+	exit(FAILURE);
 }
 
-int	get_t(int trgb)
+void	map_error(t_map *map)
 {
-	return ((trgb >> 24) & 0xFF);
-}
+	int	i;
 
-int	get_r(int trgb)
-{
-	return ((trgb >> 16) & 0xFF);
-}
-
-int	get_g(int trgb)
-{
-	return ((trgb >> 8) & 0xFF);
-}
-
-int	get_b(int trgb)
-{
-	return (trgb & 0xFF);
+	if (map == NULL)
+		return ;
+	i = -1;
+	while (++i < map->height)
+		free(map->map[i]);
+	printf("map is incorrect...\nError\n");
+	exit(FAILURE);
 }
