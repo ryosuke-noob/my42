@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:31:24 by nutar             #+#    #+#             */
-/*   Updated: 2023/04/17 15:24:01 by nutar            ###   ########.fr       */
+/*   Updated: 2023/04/17 15:46:34 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@
 # define PLAYER "./images/hero_basic.xpm"
 
 //window
-# define WIN_W 640
-# define WIN_H 480
+// # define WIN_W 640
+// # define WIN_H 480
 
 //keycode
 # define ESC 65307
