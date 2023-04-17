@@ -6,36 +6,11 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 22:12:16 by nutar             #+#    #+#             */
-/*   Updated: 2023/04/16 11:38:05 by nutar            ###   ########.fr       */
+/*   Updated: 2023/04/17 13:38:25 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#define MAX_HEIGHT 1080
-#define MAX_WIDTH 1920
-#define UNCHECKED 0
-#define CHECKED 1
-#define WALL 2
-#define COLLECTIVE 3
-#define GOAL 4
-#define YES 1
-#define NO 0
-
-typedef struct s_map
-{
-	int		fd;
-	int		height;
-	int		width;
-	char	*map[MAX_HEIGHT];
-	int		cnt_p;
-	int		cnt_c;
-	int		cnt_e;
-	int		start_i;
-	int		start_j;
-	int		cp_map[MAX_HEIGHT][MAX_WIDTH];
-	int		cnt_collect;
-	int		have_newline;
-}	t_map;
 
 void	clear_map(t_map *map)
 {
@@ -69,7 +44,7 @@ void	copy_map(t_map *map)
 			if (map->map[i][j] == '0' || map->map[i][j] == 'P')
 				map->cp_map[i][j] = UNCHECKED;
 			else if (map->map[i][j] == '1')
-				map->cp_map[i][j] = WALL;
+				map->cp_map[i][j] = OBJECTIVE;
 			else if (map->map[i][j] == 'C')
 				map->cp_map[i][j] = COLLECTIVE;
 			else if (map->map[i][j] == 'E')
@@ -228,7 +203,7 @@ int	check_point(t_map *map, int i, int j)
 
 //GOAL == 4
 //COLLECOTIVE == 3
-//WALL == 2
+//OBJECTIVE == 2
 //CHECKED == 1
 //UNCHECKED == 0
 void	check_map_playable(t_map *map)
@@ -238,14 +213,12 @@ void	check_map_playable(t_map *map)
 		error_map(map);
 }
 
-void	check_map(int fd)
+void	check_map(int fd, t_map * map)
 {
-	t_map	map;
-
-	get_map(fd, &map);
-	check_map_width(&map);
-	check_map_char(&map);
-	check_map_components(&map);
-	check_map_playable(&map);
+	get_map(fd, map);
+	check_map_width(map);
+	check_map_char(map);
+	check_map_components(map);
+	check_map_playable(map);
 	printf("good map\n");
 }

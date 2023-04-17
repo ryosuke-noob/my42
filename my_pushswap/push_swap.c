@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 18:44:56 by nutar             #+#    #+#             */
-/*   Updated: 2023/04/14 22:19:45 by nutar            ###   ########.fr       */
+/*   Updated: 2023/04/16 13:59:32 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	integers_check(t_integers integers)
 
 	i = -1;
 	while (++i < integers.argc - 1)
-		if (integers.array[i] != integers.array[i + 1] - 1)
+		if (integers.array[i] > integers.array[i + 1])
 			break ;
 	if (i == integers.argc - 1)
 	{
