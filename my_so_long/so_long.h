@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:31:24 by nutar             #+#    #+#             */
-/*   Updated: 2023/04/17 14:23:57 by nutar            ###   ########.fr       */
+/*   Updated: 2023/04/17 15:24:01 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,11 @@
 # define NO 0
 
 //images
+# define IMG_SIZE 16
 # define FLOOR "./images/Edge_single.xpm"
 # define WALL "./images/Wall_front.xpm"
 # define EXIT "./images/Floor_ladder.xpm"
-# define COLLECT "./images/box.xpm"
+# define COLLECT "./images/monster_bies.xpm"
 # define PLAYER "./images/hero_basic.xpm"
 
 //window
@@ -104,7 +105,7 @@ typedef struct s_map
 void	check_map(int fd, t_map * map);
 char	*get_next_line(int fd);
 
-void	map_to_win(t_vars vars, t_map *map);
+// void	map_to_win(t_vars vars, t_map *map);
 int		recieve_key(int	keycode, t_vars *vars);
 
 #endif
