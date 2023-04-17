@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:30:06 by nutar             #+#    #+#             */
-/*   Updated: 2023/04/18 00:24:25 by nutar            ###   ########.fr       */
+/*   Updated: 2023/04/18 00:39:14 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(int argc, char **argv)
 	return (0);
 }
 
-__attribute__((destructor))
-static void destructor(void){
-    system("leaks -q so_long");
-}
+// __attribute__((destructor))
+// static void destructor(void){
+//     system("leaks -q so_long");
+// }
