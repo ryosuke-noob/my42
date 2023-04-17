@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:31:24 by nutar             #+#    #+#             */
-/*   Updated: 2023/04/17 23:51:09 by nutar            ###   ########.fr       */
+/*   Updated: 2023/04/18 00:57:15 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@
 # define FLOOR "./images/Edge_single.xpm"
 # define WALL "./images/Wall_front.xpm"
 # define EXIT "./images/Floor_ladder.xpm"
-# define COLLECT "./images/monster_bies.xpm"
+# define COLLECT "./images/weapon_bomb.xpm"
 # define PLAYER "./images/hero_basic.xpm"
 
 //keycode
