@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 21:06:23 by nutar             #+#    #+#             */
-/*   Updated: 2023/04/17 23:23:23 by nutar            ###   ########.fr       */
+/*   Updated: 2023/04/18 09:20:53 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	read_map_data(t_data *data, const char *pass)
 	if (data->map.fd == -1)
 		file_error();
 	i = -1;
-	while (++i < MAX_HEIGHT)
+	while (++i < MAX_HEIGHT + 1)
 	{
 		data->map.map[i] = get_next_line(data->map.fd);
 		if (data->map.map[i] == NULL)
@@ -28,9 +28,11 @@ static void	read_map_data(t_data *data, const char *pass)
 		if (data->map.map[i][ft_strlen(data->map.map[i]) - 1] != '\n')
 			data->map.have_newline = NO;
 	}
+	close(data->map.fd);
+	if (i == MAX_HEIGHT)
+		map_error(&data->map);
 	data->map.height = i;
 	data->map.width = (int)ft_strlen(data->map.map[0]) - 1;
-	close(data->map.fd);
 }
 
 //copy map into integer arrays

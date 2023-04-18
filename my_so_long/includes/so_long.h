@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:31:24 by nutar             #+#    #+#             */
-/*   Updated: 2023/04/18 00:57:15 by nutar            ###   ########.fr       */
+/*   Updated: 2023/04/18 09:30:08 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,10 @@
 # define NO 0
 
 //map
-# define MAX_HEIGHT 1080
-# define MAX_WIDTH 1920
+// # define MAX_HEIGHT 1080/16 - 13
+// # define MAX_WIDTH 1920/16 - 29
+# define MAX_HEIGHT 54
+# define MAX_WIDTH 91
 # define UNCHECKED 0
 # define CHECKED 1
 # define OBJECTIVE 2
@@ -76,7 +78,7 @@ typedef struct s_map
 	int		cnt_e;
 	int		player_i;
 	int		player_j;
-	char	*map[MAX_HEIGHT];
+	char	*map[MAX_HEIGHT + 1];
 	int		cp_map[MAX_HEIGHT][MAX_WIDTH];
 	int		cnt_collect;
 	int		have_newline;

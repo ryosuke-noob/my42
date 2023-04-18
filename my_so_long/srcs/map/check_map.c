@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 21:46:49 by nutar             #+#    #+#             */
-/*   Updated: 2023/04/17 23:17:01 by nutar            ###   ########.fr       */
+/*   Updated: 2023/04/18 09:39:12 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ static void	check_map_width(t_map *map)
 {
 	int		i;
 
+	if (map->width >= MAX_WIDTH)
+		map_error(map);
 	i = -1;
 	while (++i < map->height)
 	{
