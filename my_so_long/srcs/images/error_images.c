@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 23:33:13 by nutar             #+#    #+#             */
-/*   Updated: 2023/04/18 00:25:21 by nutar            ###   ########.fr       */
+/*   Updated: 2023/04/18 22:56:59 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,8 @@ void	error_images(t_data *data)
 	int	i;
 
 	destroy_images(data);
-	close(data->map.fd);
 	mlx_destroy_window(data->mlx, data->win);
 	mlx_destroy_display(data->mlx);
-	free(data->mlx);
-	free(data->win);
 	i = -1;
 	while (++i < data->map.height)
 		free(data->map.map[i]);
