@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:30:06 by nutar             #+#    #+#             */
-/*   Updated: 2023/04/18 22:40:45 by nutar            ###   ########.fr       */
+/*   Updated: 2023/04/18 23:44:54 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		return (FAILURE);
 	init_map(&data, argv[1]);
-	check_map(&data.map);
 	init_window(&data);
 	init_images(&data);
 	manage_window(&data);

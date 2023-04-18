@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 21:39:50 by nutar             #+#    #+#             */
-/*   Updated: 2023/04/17 22:10:20 by nutar            ###   ########.fr       */
+/*   Updated: 2023/04/18 23:50:13 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,12 @@
 void	file_error(void)
 {
 	perror("cannot open file...\nError\n");
+	exit(FAILURE);
+}
+
+void	pass_error(void)
+{
+	perror("pass is incorrect...\nError\n");
 	exit(FAILURE);
 }
 

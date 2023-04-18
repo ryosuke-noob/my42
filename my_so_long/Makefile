@@ -13,7 +13,7 @@ SRCS	=	./srcs/main.c\
 			./srcs/event/player_move.c
 OBJS	= $(SRCS:.c=.o)
 CC		= cc
-CFLAGS	= -Wall -Wextra -Werror
+CFLAGS	= -Wall -Wextra -Werror -g -fsanitize=address
 IFLAGS	= -I ./includes
 LDFLAGS = -L/usr/X11R6/lib -lX11 -lXext -framework OpenGL -framework AppKit
 MINILIBX = minilibx-linux/libmlx_Darwin.a

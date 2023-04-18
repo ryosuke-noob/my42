@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 21:46:49 by nutar             #+#    #+#             */
-/*   Updated: 2023/04/18 09:39:12 by nutar            ###   ########.fr       */
+/*   Updated: 2023/04/19 00:12:13 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,10 +80,40 @@ static void	check_map_components(t_map *map)
 			map_error(map);
 }
 
+//copy map into integer arrays
+//CHECKED == 1
+//OBJECTIVE == 2
+//COLLECOTIVE == 3
+//GOAL == 4
+//UNCHECKED == 0
+static void	copy_map(t_map *map)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (++i < map->height)
+	{
+		j = -1;
+		while (++j < map->width)
+		{
+			if (map->map[i][j] == '0' || map->map[i][j] == 'P')
+				map->cp_map[i][j] = UNCHECKED;
+			else if (map->map[i][j] == '1')
+				map->cp_map[i][j] = OBJECTIVE;
+			else if (map->map[i][j] == 'C')
+				map->cp_map[i][j] = COLLECTIVE;
+			else if (map->map[i][j] == 'E')
+				map->cp_map[i][j] = GOAL;
+		}
+	}
+}
+
 void	check_map(t_map *map)
 {
 	check_map_width(map);
 	check_map_char(map);
 	check_map_components(map);
+	copy_map(map);
 	check_map_playable(map);
 }

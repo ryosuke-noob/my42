@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:31:24 by nutar             #+#    #+#             */
-/*   Updated: 2023/04/18 23:00:01 by nutar            ###   ########.fr       */
+/*   Updated: 2023/04/18 23:50:32 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ typedef struct s_data
 //map
 void	init_map(t_data *data, const char *pass);
 void	file_error(void);
+void	pass_error(void);
 void	map_error(t_map *map);
 void	check_map_playable(t_map *map);
 void	check_map(t_map *map);
