@@ -10,10 +10,14 @@ SRCS	=	./srcs/main.c\
 			./srcs/images/init_window.c\
 			./srcs/images/error_images.c\
 			./srcs/event/manage_window.c\
-			./srcs/event/player_move.c
+			./srcs/event/player_move.c\
+			./srcs/ft_printf/ft_printf.c\
+			./srcs/ft_printf/ft_print_1.c\
+			./srcs/ft_printf/ft_print_2.c
 OBJS	= $(SRCS:.c=.o)
 CC		= cc
-CFLAGS	= -Wall -Wextra -Werror -g -fsanitize=address
+# CFLAGS	= -Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS	= -Wall -Wextra -Werror
 IFLAGS	= -I ./includes
 LDFLAGS = -L/usr/X11R6/lib -lX11 -lXext -framework OpenGL -framework AppKit
 MINILIBX = minilibx-linux/libmlx_Darwin.a

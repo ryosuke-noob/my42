@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:31:24 by nutar             #+#    #+#             */
-/*   Updated: 2023/04/18 23:50:32 by nutar            ###   ########.fr       */
+/*   Updated: 2023/04/19 11:20:47 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <fcntl.h>
 # include "../minilibx-linux/mlx.h"
 # include "./get_next_line.h"
+# include "./ft_printf.h"
 
 //general
 # define SUCCESS 0
@@ -101,6 +102,7 @@ void	map_error(t_map *map);
 void	check_map_playable(t_map *map);
 void	check_map(t_map *map);
 char	*get_next_line(int fd);
+int		ft_printf(const char *format, ...);
 
 //images
 void	init_images(t_data *data);

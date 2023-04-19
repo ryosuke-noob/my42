@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 23:33:13 by nutar             #+#    #+#             */
-/*   Updated: 2023/04/18 22:56:59 by nutar            ###   ########.fr       */
+/*   Updated: 2023/04/19 11:20:59 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,6 @@ void	error_images(t_data *data)
 	i = -1;
 	while (++i < data->map.height)
 		free(data->map.map[i]);
-	printf("cannot read images...\nError\n");
+	ft_printf("cannot read images...\nError\n");
 	exit(FAILURE);
 }

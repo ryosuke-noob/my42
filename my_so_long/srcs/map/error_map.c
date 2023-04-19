@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 21:39:50 by nutar             #+#    #+#             */
-/*   Updated: 2023/04/18 23:50:13 by nutar            ###   ########.fr       */
+/*   Updated: 2023/04/19 11:21:49 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,6 @@ void	map_error(t_map *map)
 	i = -1;
 	while (++i < map->height)
 		free(map->map[i]);
-	printf("map is incorrect...\nError\n");
+	ft_printf("map is incorrect...\nError\n");
 	exit(FAILURE);
 }
