@@ -48,6 +48,10 @@ B_OBJS = $(BONUS:.c=.o)
 CC		= gcc
 CFLAGS	= -Wall -Wextra -Werror -I.
 
+ifeq ($(MAKECMDGOALS), bonus)
+	OBJS += $(B_OBJS);
+endif
+
 $(NAME): $(OBJS)
 	ar rc $(NAME) $(OBJS)
 
@@ -61,5 +65,6 @@ fclean: clean
 
 re: fclean all
 
-bonus: $(OBJS) $(B_OBJS)
-	ar rc $(NAME) $(OBJS) $(B_OBJS)
+bonus: all
+
+.PHONY: all clean fclean re bonus
