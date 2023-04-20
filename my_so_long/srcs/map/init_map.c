@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
+/*   By: rnutaba <rnutaba@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 21:06:23 by nutar             #+#    #+#             */
-/*   Updated: 2023/04/19 00:12:04 by nutar            ###   ########.fr       */
+/*   Updated: 2023/04/20 13:10:56 by rnutaba          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ static void	read_map_data(t_data *data, const char *pass)
 			data->map.have_newline = NO;
 	}
 	close(data->map.fd);
+	data->map.height = i;
 	if (i == MAX_HEIGHT || i == 0)
 		map_error(&data->map);
-	data->map.height = i;
 	data->map.width = (int)ft_strlen(data->map.map[0]) - 1;
 }
 

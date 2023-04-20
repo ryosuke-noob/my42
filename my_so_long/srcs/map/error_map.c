@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
+/*   By: rnutaba <rnutaba@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 21:39:50 by nutar             #+#    #+#             */
-/*   Updated: 2023/04/19 11:21:49 by nutar            ###   ########.fr       */
+/*   Updated: 2023/04/20 13:55:14 by rnutaba          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 void	file_error(void)
 {
-	perror("cannot open file...\nError\n");
+	ft_printf("cannot open file...\nError\n");
 	exit(FAILURE);
 }
 
 void	pass_error(void)
 {
-	perror("pass is incorrect...\nError\n");
+	ft_printf("pass is incorrect...\nError\n");
 	exit(FAILURE);
 }
 

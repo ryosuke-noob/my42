@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
+/*   By: rnutaba <rnutaba@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 21:46:49 by nutar             #+#    #+#             */
-/*   Updated: 2023/04/19 00:12:13 by nutar            ###   ########.fr       */
+/*   Updated: 2023/04/20 13:29:48 by rnutaba          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,9 @@ static void	check_map_components(t_map *map)
 
 	if (map->cnt_c == 0)
 		map_error(map);
-	if (map->cnt_e > 1)
+	if (map->cnt_e != 1)
 		map_error(map);
-	if (map->cnt_p > 1)
+	if (map->cnt_p != 1)
 		map_error(map);
 	i = -1;
 	while (++i < map->height)
