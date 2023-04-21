@@ -1,40 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_minitalk.h                                      :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/18 15:45:12 by nutar             #+#    #+#             */
-/*   Updated: 2023/04/21 09:27:58 by nutar            ###   ########.fr       */
+/*   Created: 2022/10/22 18:18:24 by nutar             #+#    #+#             */
+/*   Updated: 2022/10/22 20:03:06 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_MINITALK_H
-# define FT_MINITALK_H
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
-/*----------includes-----------*/
-# include <stdio.h>
-//
+# include <stdarg.h>
 # include <stdlib.h>
-//exit, malloc, free
 # include <unistd.h>
-//write, getpid, sleep, usleep, pause, 
-# include <signal.h>
-//signal, sig..., kill 
+
+# include <stdio.h>
 # include <limits.h>
-# include <string.h>
 
-#include "ft_printf.h"
-/*------------------------------*/
-
-# define SUCCESS 0
-# define FAILURE 1
-# define MAX_PID 99998
-# define MIN_PID 100
-
-//server
-int		ft_atoi(const char *str);
+int		ft_printf(const char *format, ...);
+int		print_c(va_list *ap);
+int		print_s(va_list *ap);
+int		print_u(va_list *ap);
+int		print_percent(void);
+int		print_x(va_list *ap, int flag);
+int		print_p(va_list *ap);
+int		print_i_d(va_list *ap);
 size_t	ft_strlen(const char *c);
 
 #endif

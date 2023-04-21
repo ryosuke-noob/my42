@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 16:07:22 by nutar             #+#    #+#             */
-/*   Updated: 2023/04/21 10:32:29 by nutar            ###   ########.fr       */
+/*   Updated: 2023/04/20 16:27:21 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,11 @@ void	send_char(pid_t pid, char c)
 	int				i;
 	unsigned char	uc;
 
-	usleep(100);
 	uc = (unsigned)c;
 	i = -1;
 	while (++i < 8)
 	{
-		usleep(5000);
+		usleep(50);
 		bit = (uc >> i) & 0x01;
 		if (kill(pid, SIGUSR1 + bit) == -1)
 		{
