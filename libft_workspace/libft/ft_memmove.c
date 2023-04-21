@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rnutaba <rnutaba@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/07 21:45:20 by rnutaba           #+#    #+#             */
-/*   Updated: 2022/10/07 21:45:20 by rnutaba          ###   ########.fr       */
+/*   Created: 2022/10/07 14:14:09 by rnutaba           #+#    #+#             */
+/*   Updated: 2022/10/07 14:14:09 by rnutaba          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
-void	*ft_calloc(size_t n, size_t size)
+void	*ft_memmove(void *s1, const void *s2, size_t size)
 {
-	char	*ret;
-	size_t	i;
+	char	*tmp;
 
-	if (size != 0 && n > SIZE_MAX / size)
-		return (NULL);
-	ret = (char *)malloc(size * n);
-	if (!ret)
-		return (0);
-	i = 0;
-	while (i < n * size)
-		ret[i++] = 0;
-	return ((void *)ret);
+	if (s1 < s2 || s2 + size <= s1)
+		ft_memcpy(s1, s2, size);
+	else if (s1 == s2)
+		return ((void *)s2);
+	else
+	{
+		tmp = s1 + size;
+		while (--tmp >= (char *)s1)
+			*tmp = *(char *)(s2 + (--size));
+	}
+	return (s1);
 }

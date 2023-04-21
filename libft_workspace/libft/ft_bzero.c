@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rnutaba <rnutaba@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/07 21:45:20 by rnutaba           #+#    #+#             */
-/*   Updated: 2022/10/07 21:45:20 by rnutaba          ###   ########.fr       */
+/*   Created: 2022/10/07 14:53:00 by rnutaba           #+#    #+#             */
+/*   Updated: 2022/10/07 14:53:00 by rnutaba          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
-void	*ft_calloc(size_t n, size_t size)
+void	ft_bzero(void *s, size_t size)
 {
-	char	*ret;
-	size_t	i;
+	size_t			i;
+	unsigned char	*tmp;
 
-	if (size != 0 && n > SIZE_MAX / size)
-		return (NULL);
-	ret = (char *)malloc(size * n);
-	if (!ret)
-		return (0);
+	tmp = s;
 	i = 0;
-	while (i < n * size)
-		ret[i++] = 0;
-	return ((void *)ret);
+	while (i < size)
+	{
+		tmp[i++] = 0;
+	}
+	return ;
 }

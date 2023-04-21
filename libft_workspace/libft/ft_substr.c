@@ -1,30 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rnutaba <rnutaba@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/07 21:45:20 by rnutaba           #+#    #+#             */
-/*   Updated: 2022/10/07 21:45:20 by rnutaba          ###   ########.fr       */
+/*   Created: 2022/10/07 22:17:13 by rnutaba           #+#    #+#             */
+/*   Updated: 2022/10/07 22:17:13 by rnutaba          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
-void	*ft_calloc(size_t n, size_t size)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char	*ret;
+	size_t	s_len;
 	size_t	i;
+	char	*ret;
 
-	if (size != 0 && n > SIZE_MAX / size)
-		return (NULL);
-	ret = (char *)malloc(size * n);
+	if (!s)
+		return (0);
+	s_len = ft_strlen(s);
+	if (len + 1 > SIZE_MAX)
+		return (0);
+	ret = (char *)malloc((len + 1));
 	if (!ret)
 		return (0);
-	i = 0;
-	while (i < n * size)
-		ret[i++] = 0;
-	return ((void *)ret);
+	if (s_len <= (size_t)start || len == 0)
+		ret[0] = 0;
+	else
+	{
+		i = start;
+		while (i < (size_t)start + len && s[i] != 0)
+		{
+			ret[i - (size_t)start] = s[i];
+			i++;
+		}	
+		ret[i - (size_t)start] = 0;
+	}
+	return (ret);
 }

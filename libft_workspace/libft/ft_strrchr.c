@@ -1,30 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rnutaba <rnutaba@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/07 21:45:20 by rnutaba           #+#    #+#             */
-/*   Updated: 2022/10/07 21:45:20 by rnutaba          ###   ########.fr       */
+/*   Created: 2022/10/07 09:48:35 by rnutaba           #+#    #+#             */
+/*   Updated: 2022/10/07 09:48:35 by rnutaba          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
-void	*ft_calloc(size_t n, size_t size)
+char	*ft_strrchr(const char *s, int c)
 {
-	char	*ret;
-	size_t	i;
+	int	count;
 
-	if (size != 0 && n > SIZE_MAX / size)
-		return (NULL);
-	ret = (char *)malloc(size * n);
-	if (!ret)
-		return (0);
-	i = 0;
-	while (i < n * size)
-		ret[i++] = 0;
-	return ((void *)ret);
+	count = 0;
+	while (*s != 0)
+	{
+		count++;
+		s++;
+	}
+	if ((unsigned char)*s == (unsigned char)c)
+		return ((char *)s);
+	s--;
+	while (count-- > 0)
+	{
+		if ((unsigned char)*s == (unsigned char)c)
+			return ((char *)s);
+		s--;
+	}
+	return (0);
 }
