@@ -35,6 +35,8 @@ static char	*set_return(char const *s1, char const *s2)
 	return (ret);
 }
 
+//ft_strjoin(NULL, NULL) == ""
+//because in subject, "Returns NULL if the allocation fails."
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*ret;

@@ -29,7 +29,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	j = 0;
 	while (s[i])
 	{
-		if (f(i, s[i]))
+		if (f)
 			ret[j++] = f(i, s[i]);
 		else
 			ret[j++] = s[i];
