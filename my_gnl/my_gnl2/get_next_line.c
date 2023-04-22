@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 23:18:48 by nutar             #+#    #+#             */
-/*   Updated: 2023/02/07 19:26:24 by nutar            ###   ########.fr       */
+/*   Updated: 2023/04/22 22:45:56 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ char	*get_next_line(int fd)
 
 	if (init(fd, &buf, &line, &rc) == NULL)
 		return (NULL);
-	while (rc == BUFFER_SIZE)
+	while (rc != 0)
 	{
 		save[fd] = check_save(save[fd], &line);
 		if (free_func(buf, line, &save[fd], -10))
@@ -125,28 +125,28 @@ char	*get_next_line(int fd)
 	return (free_func(buf, line, &save[fd], rc));
 }
 
-// #include <fcntl.h>
-// #include <time.h>
-// int	main(int argc, char **argv)
-// {
-// 	int		fd;
-// 	char	*tmp;
+#include <fcntl.h>
+#include <time.h>
+int	main(int argc, char **argv)
+{
+	int		fd;
+	char	*tmp;
 
-// 	//single
-// 	if (argc == 1)
-// 		fd = 0;
-// 	else
-// 		fd = open(argv[1], O_RDONLY);
-// 	while (1)
-// 	{
-// 		tmp = get_next_line(fd);
-// 		if (tmp == NULL)
-// 			break ;
-// 		printf("%s",tmp);
-// 		free(tmp);
-// 	}
-// 	close(fd);
-// 	printf("\n-------------------------\n\n");
-// 	system("leaks -q a.out");
-// 	return (0);
-// }
+	//single
+	if (argc == 1)
+		fd = 0;
+	else
+		fd = open(argv[1], O_RDONLY);
+	while (1)
+	{
+		tmp = get_next_line(fd);
+		if (tmp == NULL)
+			break ;
+		printf("%s",tmp);
+		free(tmp);
+	}
+	close(fd);
+	// printf("\n-------------------------\n\n");
+	// system("leaks -q a.out");
+	return (0);
+}
