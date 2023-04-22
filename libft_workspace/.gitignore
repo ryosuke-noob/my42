@@ -1,0 +1,6 @@
+# ignore libft-unit-test
+/libft-unit-test/
+# ingnore Othello42-libft-tester
+/Othello42-libft-tester/
+# ignore tripouille
+/libft/tripouille/
