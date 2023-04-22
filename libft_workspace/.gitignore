@@ -4,3 +4,5 @@
 /Othello42-libft-tester/
 # ignore tripouille
 /libft/tripouille/
+# ignore 42_libft_tester
+42_libft_tester
