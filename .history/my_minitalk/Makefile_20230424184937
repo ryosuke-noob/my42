@@ -1,0 +1,38 @@
+S_NAME	=	server
+S_SRCS	=	server.c\
+			ft_printf.c\
+			ft_print_1.c\
+			ft_print_2.c
+S_OBJS	= $(S_SRCS:.c=.o)
+C_NAME	=	client
+C_SRCS	=	client_static.c\
+			ft_atoi.c\
+			ft_printf.c\
+			ft_print_1.c\
+			ft_print_2.c
+C_OBJS	= $(C_SRCS:.c=.o)
+NAME	=	so_long
+SRCS	=	
+CC		= cc
+# CFLAGS	= -Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS	= -Wall -Wextra -Werror
+# IFLAGS	= -I ./includes
+
+$(S_OBJS): 
+
+$(NAME): $(S_OBJS) $(C_OBJS)
+	make -C minilibx-linux
+	$(CC) $(CFLAGS) -o $(S_NAME) $(S_OBJS)
+	$(CC) $(CFLAGS) -o $(C_NAME) $(C_OBJS)
+
+all: $(NAME)
+
+clean:
+	rm -f $(S_OBJS) $(C_OBJS)
+
+fclean: clean
+	rm -f $(NAME)
+
+re: fclean all
+
+.PHONY: all clean fclean re
