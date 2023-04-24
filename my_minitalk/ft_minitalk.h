@@ -6,7 +6,7 @@
 /*   By: rnutaba <rnutaba@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 15:45:12 by nutar             #+#    #+#             */
-/*   Updated: 2023/04/24 19:27:25 by rnutaba          ###   ########.fr       */
+/*   Updated: 2023/04/24 21:17:19 by rnutaba          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 # define FAILURE 1
 # define MAX_PID 99998
 # define MIN_PID 100
+# define END 2
 # define GO 1
 # define WAIT 0
 # define TRUE 1
