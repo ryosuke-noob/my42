@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 16:07:22 by nutar             #+#    #+#             */
-/*   Updated: 2023/04/25 16:23:57 by nutar            ###   ########.fr       */
+/*   Updated: 2023/04/25 16:33:28 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,33 +27,41 @@ void	send_char(pid_t pid, char c)
 	i = -1;
 	while (++i < 8)
 	{
-		usleep(100);
 		bit = (uc >> i) & 0x01;
 		if (kill(pid, SIGUSR1 + bit) == -1)
-			kill_error();
-		flag = WAIT;
-	}
-	time_count = 0;
-	while (flag == WAIT)
-	{
-		time_count++;
-		if (time_count == 1000000000)
 		{
-			time_count = 0;
-			// ft_printf("send again[c:%c, bit:%d, cnt:%d]\n", c, bit, time_count);
-			if (kill(pid, SIGUSR1 + bit) == -1)
-				kill_error();
+			ft_printf("[kill error]\n");
+			exit(FAILURE);
+		}
+		flag = WAIT;
+		time_count = 0;
+		while (flag == WAIT)
+		{
+			time_count++;
+			if (time_count == 1000000000)
+			{
+				time_count = 0;
+				ft_printf("send again[c:%c, bit:%d, cnt:%d]\n", c, bit, time_count);
+				if (kill(pid, SIGUSR1 + bit) == -1)
+				{
+					ft_printf("[kill error]\n");
+					exit(FAILURE);
+				}
+			}
+			if (flag == END)
+				return ;
 		}
 	}
 }
 
 void	wait_until_success(int sig, siginfo_t *info, void *p)
 {
+	// write(1, "get signal\n", 12);
 	usleep(50);
 	if (sig == SIGUSR1)
 		flag = GO;
 	else if (sig == SIGUSR2)
-		send_fail();
+		flag = END;
 	(void)info;
 	(void)p;
 }

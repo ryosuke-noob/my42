@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 15:54:27 by nutar             #+#    #+#             */
-/*   Updated: 2023/04/25 16:28:49 by nutar            ###   ########.fr       */
+/*   Updated: 2023/04/25 16:29:31 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ void	recieve_char(int sig, siginfo_t *info, void *p)
 	bit_count++;
 	if (bit_count >= 8)
 	{
-		// ft_printf("%d",c);
-		write(1, &c, 1);
-		// write(1, "\n", 1);
+		ft_printf("%d",c);
+		// write(1, &c, 1);
+		write(1, "\n", 1);
 		c = 0;
 		bit_count = 0;
 		if (kill(info->si_pid, SIGUSR2) == -1)
@@ -38,7 +38,10 @@ void	recieve_char(int sig, siginfo_t *info, void *p)
 	(void)p;
 	usleep(50);
 	if (kill(info->si_pid, SIGUSR1) == -1)
-		kill_error();
+	{
+		ft_printf("[kill error\n");
+		exit(FAILURE);
+	}
 }
 
 void	server_reciever(void handler(int, siginfo_t *, void *))
