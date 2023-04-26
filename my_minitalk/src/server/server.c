@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 15:54:27 by nutar             #+#    #+#             */
-/*   Updated: 2023/04/25 16:29:31 by nutar            ###   ########.fr       */
+/*   Updated: 2023/04/26 17:45:59 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,15 @@ void	recieve_char(int sig, siginfo_t *info, void *p)
 	static char	c;
 	static int	bit_count;
 
-	ft_printf("%d ",sig);
+	// ft_printf("%d ",sig);
 	if (sig == SIGUSR2)
 		c = c + (1 << bit_count) & 0x000000FF;
 	bit_count++;
 	if (bit_count >= 8)
 	{
-		ft_printf("%d",c);
-		// write(1, &c, 1);
-		write(1, "\n", 1);
+		// ft_printf("%d",c);
+		write(1, &c, 1);
+		// write(1, "\n", 1);
 		c = 0;
 		bit_count = 0;
 		if (kill(info->si_pid, SIGUSR2) == -1)
