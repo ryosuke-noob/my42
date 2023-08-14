@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 16:38:41 by nutar             #+#    #+#             */
-/*   Updated: 2023/08/14 16:47:42 by nutar            ###   ########.fr       */
+/*   Updated: 2023/08/14 17:33:28 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	*thread(void *arg)
 	// printf("in %dth thread\n", th->i);
 
 	//left_right ver.
-	printf("in %dth thread, left = %d, right = %d\n", th->i, \
+	printf("in %luth thread, left = %lu, right = %lu\n", th->i, \
 	(th->i + th->num - 1) % th->num, th->i);
 
 	//one_two fork ver.
@@ -32,9 +32,9 @@ void	*thread(void *arg)
 	return (NULL);
 }
 
-void	delete_thread(t_th *th, int num)
+void	delete_thread(t_th *th, long num)
 {
-	int	i;
+	long	i;
 
 	i = -1;
 	while (++i < num)
@@ -45,9 +45,9 @@ void	delete_thread(t_th *th, int num)
 	free(th);
 }
 
-void	delete_mutex(pthread_mutex_t *forks, int num)
+void	delete_mutex(pthread_mutex_t *forks, long num)
 {
-	int	i;
+	long	i;
 
 	i = -1;
 	while (++i < num)
@@ -56,21 +56,23 @@ void	delete_mutex(pthread_mutex_t *forks, int num)
 		free(forks);
 }
 
-int	create_philos(int num)
+int	create_philos(long num)
 {
 	t_th			*th;
-	int				i;
+	long			i;
 	pthread_mutex_t	*forks;
 
+	//init
 	th = (t_th *)malloc(sizeof(t_th) * num);
 	if (th == NULL)
 		return (ERR);
-	forks = (pthread_t *)malloc(sizeof(pthread_t) * num);
+	forks = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * num);
 	if (forks == NULL)
 		return (ERR);
 	i = -1;
 	while (++i < num)
 		pthread_mutex_init(&forks[i], NULL);
+	//create thread
 	i = -1;
 	while (++i < num)
 	{
@@ -81,16 +83,45 @@ int	create_philos(int num)
 		if (pthread_create(&th[i].th, NULL, thread, (void *) &th[i]) == ERR)
 			return (ERR);
 	}
+	//delete thread and free
 	delete_thread(th, num);
 	delete_mutex(forks, num);
 	return (EXIT_SUCCESS);
 }
 
+int	check_int(char *arg)
+{
+	//check length of the arg. If more than 10 letters, ERR.
+	//convert to long
+	//if number bigger than INT_MAX, ERR.
+	return (EXIT_SUCCESS);
+}
+
+int	check_input(int argc, char **argv)
+{
+	int	i;
+
+	i = 0;
+	while (++i < argc)
+	{
+		//check letter of the arg. If have alfs, ERR.
+		if (check_int(argv[i]) == ERR)
+			return (ERR);
+	}
+	return (EXIT_SUCCESS);
+}
+
 int	main(int argc, char **argv)
 {
+	t_input	input;
+
 	// if (argc != 5 && argc != 6)
 	// 	return (EXIT_FAILURE);
-	// printf("time_stamp: %ld\n", get_time());
+	// // check_input(argc, argv);
+	// if (check_input(argc, argv) == ERR)
+	// 	return (EXIT_FAILURE);
+	// // printf("time_stamp: %ld\n", get_time());
 	create_philos(5);
+	// printf("%lu\n", (long)1 % 2);
 	return (EXIT_SUCCESS);
 }
