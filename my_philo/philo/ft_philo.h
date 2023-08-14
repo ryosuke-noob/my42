@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 15:45:12 by nutar             #+#    #+#             */
-/*   Updated: 2023/08/12 19:35:39 by nutar            ###   ########.fr       */
+/*   Updated: 2023/08/14 16:16:30 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,20 @@
 
 # define ERR -1
 
+// typedef struct s_fork
+// {
+// 	pthread_mutex_t	*fork;
+// }	t_fork;
+
+
 typedef struct s_th
 {
 	pthread_t		th;
 	void			*th_return;
 	int				i;
 	int				num;
-	pthread_mutex_t	*mutex;
-	int				*tmp;
+	pthread_mutex_t	*l_fork;
+	pthread_mutex_t	*r_fork;
 }	t_th;
 
 // utils
