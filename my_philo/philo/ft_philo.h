@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 15:45:12 by nutar             #+#    #+#             */
-/*   Updated: 2023/08/08 17:49:20 by nutar            ###   ########.fr       */
+/*   Updated: 2023/08/12 19:35:39 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,16 @@
 /*------------------------------*/
 
 # define ERR -1
+
+typedef struct s_th
+{
+	pthread_t		th;
+	void			*th_return;
+	int				i;
+	int				num;
+	pthread_mutex_t	*mutex;
+	int				*tmp;
+}	t_th;
 
 // utils
 long	get_time(void);
