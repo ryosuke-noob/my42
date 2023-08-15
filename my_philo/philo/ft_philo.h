@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 15:45:12 by nutar             #+#    #+#             */
-/*   Updated: 2023/08/14 17:29:48 by nutar            ###   ########.fr       */
+/*   Updated: 2023/08/15 21:41:08 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@
 /*------------------------------*/
 
 # define ERR -1
+# define TRUE 1
+# define FALSE 0
 
 // typedef struct s_fork
 // {
@@ -39,11 +41,11 @@
 
 typedef struct s_input
 {
-	long	num;
-	long	die;
-	long	eat;
-	long	sleep;
-	long	must_eat;
+	int	num;
+	int	die;
+	int	eat;
+	int	sleep;
+	int	must_eat;
 }	t_input;
 
 typedef struct s_th
@@ -58,5 +60,8 @@ typedef struct s_th
 
 // utils
 long	get_time(void);
+
+//
+t_input	*set_input(int argc, char **argv, t_input *ret);
 
 #endif

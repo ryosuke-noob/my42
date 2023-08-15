@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 16:38:41 by nutar             #+#    #+#             */
-/*   Updated: 2023/08/14 17:33:28 by nutar            ###   ########.fr       */
+/*   Updated: 2023/08/15 21:44:25 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,39 +89,26 @@ int	create_philos(long num)
 	return (EXIT_SUCCESS);
 }
 
-int	check_int(char *arg)
-{
-	//check length of the arg. If more than 10 letters, ERR.
-	//convert to long
-	//if number bigger than INT_MAX, ERR.
-	return (EXIT_SUCCESS);
-}
-
-int	check_input(int argc, char **argv)
-{
-	int	i;
-
-	i = 0;
-	while (++i < argc)
-	{
-		//check letter of the arg. If have alfs, ERR.
-		if (check_int(argv[i]) == ERR)
-			return (ERR);
-	}
-	return (EXIT_SUCCESS);
-}
-
 int	main(int argc, char **argv)
 {
 	t_input	input;
 
-	// if (argc != 5 && argc != 6)
-	// 	return (EXIT_FAILURE);
-	// // check_input(argc, argv);
-	// if (check_input(argc, argv) == ERR)
-	// 	return (EXIT_FAILURE);
-	// // printf("time_stamp: %ld\n", get_time());
-	create_philos(5);
+	if (argc != 5 && argc != 6)
+	{
+		printf("wrong argument\n");
+		return (EXIT_FAILURE);
+	}
+	if (set_input(argc, argv, &input) == NULL)
+	{
+		printf("wrong input\n");
+		return (EXIT_FAILURE);
+	}
+	printf("OK\n");
+	printf("num: %d, die: %d, eat: %d, sleep: %d", input.num, input.die, input.eat, input.sleep);
+	if (argc == 6)
+		printf(", must_eat: %d", input.must_eat);
+	printf("\n");
+	// create_philos(5);
 	// printf("%lu\n", (long)1 % 2);
 	return (EXIT_SUCCESS);
 }
