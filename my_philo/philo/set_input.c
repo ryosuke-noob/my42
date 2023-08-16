@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 17:41:51 by nutar             #+#    #+#             */
-/*   Updated: 2023/08/15 21:45:25 by nutar            ###   ########.fr       */
+/*   Updated: 2023/08/16 11:45:55 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,15 @@ t_input	*set_input(int argc, char **argv, t_input *ret)
 	if (check_input(argc, argv) == ERR)
 		return (NULL);
 	ret->num = ft_atoi_edit(argv[1]);
+	if (ret->num == 0)
+		return (NULL);
 	ret->die = ft_atoi_edit(argv[2]);
 	ret->eat = ft_atoi_edit(argv[3]);
 	ret->sleep = ft_atoi_edit(argv[4]);
 	if (argc == 6)
 		ret->must_eat = ft_atoi_edit(argv[5]);
+	else
+		ret->must_eat = NO_INPUT;
 	return (ret);
 }
 

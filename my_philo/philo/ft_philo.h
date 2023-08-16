@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 15:45:12 by nutar             #+#    #+#             */
-/*   Updated: 2023/08/15 21:41:08 by nutar            ###   ########.fr       */
+/*   Updated: 2023/08/16 11:49:22 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 # define ERR -1
 # define TRUE 1
 # define FALSE 0
+# define NO_INPUT -2
 
 // typedef struct s_fork
 // {
@@ -53,9 +54,9 @@ typedef struct s_th
 	pthread_t		th;
 	void			*th_return;
 	long			i;
-	long			num;
 	pthread_mutex_t	*l_fork;
 	pthread_mutex_t	*r_fork;
+	t_input			input;
 }	t_th;
 
 // utils
@@ -63,5 +64,10 @@ long	get_time(void);
 
 //
 t_input	*set_input(int argc, char **argv, t_input *ret);
+
+//error
+int		arg_error(void);
+int		input_error(void);
+
 
 #endif

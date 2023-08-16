@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/08 17:25:44 by nutar             #+#    #+#             */
-/*   Updated: 2023/08/16 12:18:02 by nutar            ###   ########.fr       */
+/*   Created: 2023/08/16 11:46:46 by nutar             #+#    #+#             */
+/*   Updated: 2023/08/16 11:48:20 by nfutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_philo.h"
 
-long	get_time(void)
+int	arg_error(void)
 {
-	struct timeval	tv;
-	long			m_sec;
+	printf("wrong argument\n");
+	return (EXIT_FAILURE);
+}
 
-	if (gettimeofday(&tv, NULL) == ERR)
-		return (ERR);
-	m_sec = tv.tv_sec * 1000 + tv.tv_usec / 1000;
-	// printf("sec: %ld\n", tv.tv_sec);
-	// printf("msec: %d\n", tv.tv_usec / 1000);
-	// printf("usec: %d\n", tv.tv_usec);
-	return (m_sec);
+int	input_error(void)
+{
+	printf("wrong input\n");
+	return (EXIT_FAILURE);
 }
