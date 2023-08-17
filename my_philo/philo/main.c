@@ -6,13 +6,34 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 16:38:41 by nutar             #+#    #+#             */
-/*   Updated: 2023/08/16 12:37:10 by nutar            ###   ########.fr       */
+/*   Updated: 2023/08/17 17:55:42 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./ft_philo.h"
 
-void	*thread(void *arg)
+void	*observer(void *arg)
+{
+	t_th	*th;
+	long	time;
+
+	th = (t_th *)arg;
+	while (1)
+	{
+		// > ot >= ?
+		time = get_time();
+		if (time >= th->last_eat + (long)th->input.die)
+		{
+			printf("%lu %d died\n", time, th->i);
+			th->flag->dead = TRUE;
+			return (NULL);
+		}
+		if (th->clear == TRUE)
+			return (NULL);
+	}
+}
+
+void	*philo(void *arg)
 {
 	t_th	*th;
 	int		eat_count;
@@ -24,21 +45,25 @@ void	*thread(void *arg)
 		pthread_mutex_lock(th->l_fork);
 		printf("%lu %d has taken a fork\n", get_time(), th->i);
 		pthread_mutex_lock(th->r_fork);
-		printf("%lu %d has taken a fork\n", get_time(), th->i);
-		printf("%lu %d is eating\n", get_time(), th->i);
+		th->last_eat = get_time();
+		printf("%lu %d has taken a fork\n", th->last_eat, th->i);
+		printf("%lu %d is eating\n", th->last_eat, th->i);
 		//start eating
+		eat_count++;
 		usleep(th->input.eat * 1000);
 		//end eating
 		pthread_mutex_unlock(th->r_fork);
 		pthread_mutex_unlock(th->l_fork);
 		if (eat_count == th->input.must_eat)
-			return (EXIT_SUCCESS);
+			break ;
 		//start sleeping
 		printf("%lu %d is sleeping\n", get_time(), th->i);
 		usleep(th->input.sleep * 1000);
 		//end sleeping
 		printf("%lu %d is thinking\n", get_time(), th->i);
 	}
+	th->clear = TRUE;
+	(th->flag->clear_count)++;
 	return (NULL);
 }
 
@@ -73,8 +98,9 @@ void	delete_thread(t_th *th, long num)
 	i = -1;
 	while (++i < num)
 	{
-		// pthread_detach(th[i].th);
-		pthread_join(th[i].th, &th[i].th_return);
+		pthread_detach(th[i].th);
+		pthread_detach(th[i].th_obs);
+		// pthread_join(th[i].th, &th[i].th_return);
 	}
 	free(th);
 }
@@ -86,15 +112,16 @@ void	delete_mutex(pthread_mutex_t *forks, long num)
 	i = -1;
 	while (++i < num)
 		pthread_mutex_destroy(&forks[i]);
-	if (num != 1)
-		free(forks);
+	// if (num != 1)
+	// 	free(forks);
 }
 
 int	create_philos(t_input input)
 {
 	t_th			*th;
-	long			i;
+	int				i;
 	pthread_mutex_t	*forks;
+	t_flag			flag;
 
 	//---init---//
 	th = (t_th *)malloc(sizeof(t_th) * input.num);
@@ -107,6 +134,8 @@ int	create_philos(t_input input)
 	while (++i < input.num)
 		if (pthread_mutex_init(&forks[i], NULL) == ERR)
 			return (ERR);
+	flag.clear_count = 0;
+	flag.dead = FALSE;
 	//---init---//
 	//create thread
 	i = -1;
@@ -116,12 +145,32 @@ int	create_philos(t_input input)
 		th[i].input = input;
 		th[i].l_fork = &forks[(i + input.num - 1) % input.num];
 		th[i].r_fork = &forks[i];
-		if (pthread_create(&th[i].th, NULL, thread, (void *) &th[i]) == ERR)
+		th[i].last_eat = get_time();
+		th[i].flag = &flag;
+		th[i].clear = FALSE;
+		if (pthread_create(&th[i].th, NULL, philo, (void *) &th[i]) == ERR)
+			return (ERR);
+		if (pthread_create(&th[i].th_obs, NULL, observer, (void *) &th[i]) == ERR)
 			return (ERR);
 	}
+
+	//---wait for the end of thread--//
+	// delete_thread(th, input.num);
+	pthread_detach(th[i].th);
+	pthread_detach(th[i].th_obs);
+	while (flag.clear_count != input.num)
+	{
+		if (flag.dead == TRUE)
+		{
+			delete_mutex(forks, input.num);
+			return (EXIT_FAILURE);
+		}
+	}
+	//---wait for the end of thread--//
+
 	//---delete thread and free---//
-	delete_thread(th, input.num);
 	delete_mutex(forks, input.num);
+	free(th);
 	//---delete thread and free---//
 	return (EXIT_SUCCESS);
 }

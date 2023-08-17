@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 15:45:12 by nutar             #+#    #+#             */
-/*   Updated: 2023/08/16 11:49:22 by nutar            ###   ########.fr       */
+/*   Updated: 2023/08/17 17:54:29 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,23 @@ typedef struct s_input
 	int	must_eat;
 }	t_input;
 
+typedef struct s_flag
+{
+	int	dead;
+	int	clear_count;
+}	t_flag;
+
 typedef struct s_th
 {
 	pthread_t		th;
-	void			*th_return;
-	long			i;
+	pthread_t		th_obs;
+	int				i;
 	pthread_mutex_t	*l_fork;
 	pthread_mutex_t	*r_fork;
 	t_input			input;
+	long			last_eat;
+	t_flag			*flag;
+	int				clear;
 }	t_th;
 
 // utils
