@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 16:38:41 by nutar             #+#    #+#             */
-/*   Updated: 2023/08/17 17:55:42 by nutar            ###   ########.fr       */
+/*   Updated: 2023/09/07 03:31:28 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,10 +163,12 @@ int	create_philos(t_input input)
 		if (flag.dead == TRUE)
 		{
 			delete_mutex(forks, input.num);
+			printf("fail\n");
 			return (EXIT_FAILURE);
 		}
 	}
 	//---wait for the end of thread--//
+	printf("succeed\n");
 
 	//---delete thread and free---//
 	delete_mutex(forks, input.num);
