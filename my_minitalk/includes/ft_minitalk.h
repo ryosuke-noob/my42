@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 15:45:12 by nutar             #+#    #+#             */
-/*   Updated: 2023/04/25 16:10:42 by nutar            ###   ########.fr       */
+/*   Updated: 2023/09/25 01:17:43 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,10 @@
 
 # define SUCCESS 0
 # define FAILURE 1
+# define ERR -1
 # define MAX_PID 99998
 # define MIN_PID 100
+# define RE 3
 # define END 2
 # define GO 1
 # define WAIT 0

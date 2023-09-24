@@ -6,42 +6,53 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 15:54:27 by nutar             #+#    #+#             */
-/*   Updated: 2023/04/26 17:45:59 by nutar            ###   ########.fr       */
+/*   Updated: 2023/09/25 02:07:12 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../../includes/ft_minitalk.h"
 
+static int	waiting_time;
+
 void	recieve_char(int sig, siginfo_t *info, void *p)
 {
-	static char	c;
 	static int	bit_count;
+	static char	c;
 
-	// ft_printf("%d ",sig);
+	// printf("catch\n");
+	waiting_time = 0;
 	if (sig == SIGUSR2)
 		c = c + (1 << bit_count) & 0x000000FF;
 	bit_count++;
 	if (bit_count >= 8)
 	{
-		// ft_printf("%d",c);
 		write(1, &c, 1);
-		// write(1, "\n", 1);
 		c = 0;
 		bit_count = 0;
 		if (kill(info->si_pid, SIGUSR2) == -1)
 		{
-			ft_printf("[kill error\n");
+			ft_printf("[kill error]\n");
 			exit(FAILURE);
 		}
-		return ;
+		// return ;
 	}
 	(void)p;
-	usleep(50);
-	if (kill(info->si_pid, SIGUSR1) == -1)
+	while (waiting_time++ != 0)
 	{
-		ft_printf("[kill error\n");
-		exit(FAILURE);
+		if (waiting_time % 10000000 == 0)
+			printf("%d0000000",waiting_time);
+		if (waiting_time == 100000000)
+		{
+			if (kill(info->si_pid, SIGUSR1) == -1)
+			{
+				ft_printf("[kill error]\n");
+				exit(FAILURE);
+			}
+			c = 0;
+			bit_count = 0;
+		}
 	}
+	// usleep(50);
 }
 
 void	server_reciever(void handler(int, siginfo_t *, void *))
@@ -63,6 +74,12 @@ int	main(void)
 	ft_printf("PID: %d\n", getpid());
 	server_reciever(recieve_char);
 	while (1)
-		;
+	{
+		// waiting_time++;
+		// if (waiting_time % 1000000000 == 0)
+		// 	printf("%d00000\n", waiting_time);
+		// if (waiting_time == 1000000000)
+		// 	recieve_char(0,NULL,NULL);
+	}
 	return (SUCCESS);
 }
