@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_philos.c                                    :+:      :+:    :+:   */
+/*   create_threads.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/24 14:50:25 by nutar             #+#    #+#             */
-/*   Updated: 2023/09/24 14:58:35 by nutar            ###   ########.fr       */
+/*   Updated: 2023/09/25 00:49:38 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ static void	*obs(void *arg)
 		time = get_time();
 		if (time >= th->last_eat + (long)th->input.die)
 		{
+			print_died(th, time);
 			th->flag->dead = TRUE;
-			printf("%lu %d died\n", time, th->i);
 			return (NULL);
 		}
 		if (th->clear == TRUE)
@@ -77,19 +77,19 @@ static void	*philo(void *arg)
 	while (1)
 	{
 		pthread_mutex_lock(th->l_fork);
-		printf("%lu %d has taken a fork\n", get_time(), th->i);
+		print_take_fork(th, get_time());
 		pthread_mutex_lock(th->r_fork);
 		th->last_eat = get_time();
-		printf("%lu %d has taken a fork\n", th->last_eat, th->i);
-		printf("%lu %d is eating\n", th->last_eat, th->i);
+		print_take_fork(th, th->last_eat);
+		print_eating(th);
 		usleep(th->input.eat * 1000);
 		pthread_mutex_unlock(th->r_fork);
 		pthread_mutex_unlock(th->l_fork);
 		if (++eat_count == th->input.must_eat)
 			break ;
-		printf("%lu %d is sleeping\n", get_time(), th->i);
+		print_sleeping(th);
 		usleep(th->input.sleep * 1000);
-		printf("%lu %d is thinking\n", get_time(), th->i);
+		print_thinking(th);
 	}
 	th->clear = TRUE;
 	(th->flag->clear_count)++;
@@ -119,9 +119,10 @@ static int	init_create_philos(t_input input, t_th **th, \
 	return (EXIT_SUCCESS);
 }
 
-static void	set_philo_data(t_th *th, int i, pthread_mutex_t *forks, t_input *input)
+static void	set_philo_data(t_th *th, int i, \
+						pthread_mutex_t *forks, t_input *input)
 {
-	th[i].i = i;
+	th[i].i = i + 1;
 	th[i].input = *input;
 	th[i].l_fork = &forks[(i + input->num - 1) % input->num];
 	th[i].r_fork = &forks[i];

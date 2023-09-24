@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 15:45:12 by nutar             #+#    #+#             */
-/*   Updated: 2023/09/24 15:02:44 by nutar            ###   ########.fr       */
+/*   Updated: 2023/09/25 00:46:31 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,12 @@ int		create_threads(t_input input);
 //error
 int		arg_error(void);
 int		input_error(void);
+
+//print_message
+void	print_take_fork(t_th *th, long time);
+void	print_eating(t_th *th);
+void	print_sleeping(t_th *th);
+void	print_thinking(t_th *th);
+void	print_died(t_th *th, long time);
 
 #endif

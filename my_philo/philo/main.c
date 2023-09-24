@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 16:38:41 by nutar             #+#    #+#             */
-/*   Updated: 2023/09/24 14:58:42 by nutar            ###   ########.fr       */
+/*   Updated: 2023/09/25 00:45:19 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,3 +32,8 @@ int	main(int argc, char **argv)
 		printf("succeed\n");
 	return (EXIT_SUCCESS);
 }
+
+// __attribute__((destructor))
+// static void destructor(void){
+//     system("leaks -q a.out");
+// }
