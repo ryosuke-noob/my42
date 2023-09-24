@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 16:38:41 by nutar             #+#    #+#             */
-/*   Updated: 2023/09/07 03:31:28 by nutar            ###   ########.fr       */
+/*   Updated: 2023/09/24 13:33:57 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,36 @@ void	delete_mutex(pthread_mutex_t *forks, long num)
 	// 	free(forks);
 }
 
+static int	init_create_philos(t_input input, t_th **th, \
+							pthread_mutex_t	**forks, t_flag *flag)
+{
+	int	i;
+
+	*th = (t_th *)malloc(sizeof(t_th) * input.num);
+	if (*th == NULL)
+		return (ERR);
+	*forks = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * input.num);
+	if (*forks == NULL)
+	{
+		free(*th);
+		return (ERR);
+	}
+	i = -1;
+	while (++i < input.num)
+	{
+		if (pthread_mutex_init((&(*forks)[i]), NULL) == ERR)
+		{
+			delete_mutex(*forks, (long)i);
+			free(*th);
+			free(*forks);
+			return (ERR);
+		}
+	}
+	flag->clear_count = 0;
+	flag->dead = FALSE;
+	return (EXIT_SUCCESS);
+}
+
 int	create_philos(t_input input)
 {
 	t_th			*th;
@@ -123,20 +153,22 @@ int	create_philos(t_input input)
 	pthread_mutex_t	*forks;
 	t_flag			flag;
 
-	//---init---//
-	th = (t_th *)malloc(sizeof(t_th) * input.num);
-	if (th == NULL)
+	// //---init---//
+	// th = (t_th *)malloc(sizeof(t_th) * input.num);
+	// if (th == NULL)
+	// 	return (ERR);
+	// forks = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * input.num);
+	// if (forks == NULL)
+	// 	return (ERR);
+	// i = -1;
+	// while (++i < input.num)
+	// 	if (pthread_mutex_init(&forks[i], NULL) == ERR)
+	// 		return (ERR);
+	// flag.clear_count = 0;
+	// flag.dead = FALSE;
+	// //---init---//
+	if (init_create_philos(input, &th, &forks, &flag) == ERR)
 		return (ERR);
-	forks = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * input.num);
-	if (forks == NULL)
-		return (ERR);
-	i = -1;
-	while (++i < input.num)
-		if (pthread_mutex_init(&forks[i], NULL) == ERR)
-			return (ERR);
-	flag.clear_count = 0;
-	flag.dead = FALSE;
-	//---init---//
 	//create thread
 	i = -1;
 	while (++i < input.num)
