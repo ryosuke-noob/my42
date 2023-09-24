@@ -6,20 +6,24 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 15:54:27 by nutar             #+#    #+#             */
-/*   Updated: 2023/09/25 02:07:12 by nutar            ###   ########.fr       */
+/*   Updated: 2023/09/25 02:23:55 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../../includes/ft_minitalk.h"
 
-static int	waiting_time;
+void	init_c_bit_count(char *c, int *bit_count)
+{
+	*c = 0;
+	*bit_count = 0;
+}
 
 void	recieve_char(int sig, siginfo_t *info, void *p)
 {
+	static int	waiting_time;
 	static int	bit_count;
 	static char	c;
 
-	// printf("catch\n");
 	waiting_time = 0;
 	if (sig == SIGUSR2)
 		c = c + (1 << bit_count) & 0x000000FF;
@@ -27,32 +31,20 @@ void	recieve_char(int sig, siginfo_t *info, void *p)
 	if (bit_count >= 8)
 	{
 		write(1, &c, 1);
-		c = 0;
-		bit_count = 0;
+		init_c_bit_count(&c, &bit_count);
 		if (kill(info->si_pid, SIGUSR2) == -1)
-		{
-			ft_printf("[kill error]\n");
-			exit(FAILURE);
-		}
-		// return ;
+			kill_error();
 	}
 	(void)p;
 	while (waiting_time++ != 0)
 	{
-		if (waiting_time % 10000000 == 0)
-			printf("%d0000000",waiting_time);
 		if (waiting_time == 100000000)
 		{
 			if (kill(info->si_pid, SIGUSR1) == -1)
-			{
-				ft_printf("[kill error]\n");
-				exit(FAILURE);
-			}
-			c = 0;
-			bit_count = 0;
+				kill_error();
+			init_c_bit_count(&c, &bit_count);
 		}
 	}
-	// usleep(50);
 }
 
 void	server_reciever(void handler(int, siginfo_t *, void *))
@@ -74,12 +66,6 @@ int	main(void)
 	ft_printf("PID: %d\n", getpid());
 	server_reciever(recieve_char);
 	while (1)
-	{
-		// waiting_time++;
-		// if (waiting_time % 1000000000 == 0)
-		// 	printf("%d00000\n", waiting_time);
-		// if (waiting_time == 1000000000)
-		// 	recieve_char(0,NULL,NULL);
-	}
+		;
 	return (SUCCESS);
 }
