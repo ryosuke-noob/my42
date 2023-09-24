@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 17:41:51 by nutar             #+#    #+#             */
-/*   Updated: 2023/08/16 11:45:55 by nutar            ###   ########.fr       */
+/*   Updated: 2023/09/24 14:46:37 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ static size_t	ft_strlen(const char *c);
 static int		ft_atoi_edit(const char *str);
 static int		check_input(int argc, char **argv);
 
+// check input and set input
+// return NULL if it fails
 t_input	*set_input(int argc, char **argv, t_input *ret)
 {
 	if (check_input(argc, argv) == ERR)

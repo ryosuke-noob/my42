@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 15:45:12 by nutar             #+#    #+#             */
-/*   Updated: 2023/09/24 13:52:42 by nutar            ###   ########.fr       */
+/*   Updated: 2023/09/24 15:02:44 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,11 @@ typedef struct s_th
 long	get_time(void);
 int		delete_all(pthread_mutex_t *forks, long num, t_th *th, int status);
 
-//
+// set_input
 t_input	*set_input(int argc, char **argv, t_input *ret);
+
+// create_threads
+int		create_threads(t_input input);
 
 //error
 int		arg_error(void);
