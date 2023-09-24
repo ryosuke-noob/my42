@@ -12,6 +12,8 @@
 
 #include "ft_philo.h"
 
+
+
 int	arg_error(void)
 {
 	printf("wrong argument\n");
