@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 16:07:22 by nutar             #+#    #+#             */
-/*   Updated: 2023/09/25 11:09:46 by nutar            ###   ########.fr       */
+/*   Updated: 2023/09/25 11:56:51 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,6 @@ void	wait_until_success(int sig, siginfo_t *info, void *p)
 		g_flag = RE;
 	else if (sig == SIGUSR2)
 		g_flag = END;
-	if (sig == SIGUSR1)
-		printf("RE\n");
 	(void)info;
 	(void)p;
 }
@@ -80,6 +78,5 @@ int	main(int argc, char **argv)
 			if (g_flag == RE)
 				send_char(pid, argv[2][i]);
 	}
-	ft_printf("success\n");
 	return (SUCCESS);
 }
