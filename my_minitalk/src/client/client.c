@@ -6,7 +6,7 @@
 /*   By: nutar <nutar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 16:07:22 by nutar             #+#    #+#             */
-/*   Updated: 2023/09/25 02:24:25 by nutar            ###   ########.fr       */
+/*   Updated: 2023/09/25 11:09:46 by nutar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	send_char(pid_t pid, char c)
 		bit = (uc >> i) & 0x01;
 		if (kill(pid, SIGUSR1 + bit) == ERR)
 			kill_error();
-		usleep(50);
+		usleep(30);
 	}
 }
 
@@ -40,6 +40,8 @@ void	wait_until_success(int sig, siginfo_t *info, void *p)
 		g_flag = RE;
 	else if (sig == SIGUSR2)
 		g_flag = END;
+	if (sig == SIGUSR1)
+		printf("RE\n");
 	(void)info;
 	(void)p;
 }
